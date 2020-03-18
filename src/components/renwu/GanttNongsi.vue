@@ -1,5 +1,5 @@
 <!--
- * @Descripttion: 农事任务添加
+ * @Descripttion: 农事任务
  -->
 <template>
   <div class="ns_container">
@@ -106,7 +106,17 @@
 <script>
   export default {
     name: 'gantt',
-    value: '',
+    data() {
+      return {
+        form: {
+          name: '',
+          type: '',
+          after: '',
+          continue: '',
+          priority: ''
+        }
+      }
+    },
     methods: {
       close() {
         this.$emit('close', 'close')
@@ -115,7 +125,7 @@
 
   }
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css"
 .ns_container
   width 100%

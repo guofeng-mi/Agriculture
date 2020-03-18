@@ -1,8 +1,5 @@
 <!--
  * @Descripttion: 大数据报表
- * @version:
- * @Date: 2020-02-11 16:03:32
- * @LastEditTime: 2020-02-19 17:01:48
  -->
 <template>
   <div class="table_bg">

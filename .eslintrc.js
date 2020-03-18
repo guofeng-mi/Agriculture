@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: Logic
- * @Date: 2019-12-26 14:01:06
- * @LastEditors: Logic
- * @LastEditTime: 2019-12-26 16:46:10
- */
 module.exports = {
   root: true,
   env: {

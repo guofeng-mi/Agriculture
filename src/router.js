@@ -1,10 +1,5 @@
 /*
  * @Descripttion:
- * @version:
- * @Author: Logic
- * @Date: 2020-01-03 09:23:14
- * @LastEditors  : Logic
- * @LastEditTime : 2020-02-24 14:54:41
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -23,6 +18,11 @@ const router = new Router({
       name: 'layout',
       component: Layout,
       children: [
+        {
+          path: '/',
+          name: 'main',
+          component: () => import('./views/Main.vue')
+        },
         {
           path: 'home',
           name: 'home',
@@ -64,6 +64,12 @@ router.beforeEach((to, from, next) => {
   console.log(to.name)
   if(to.name == 'layout') {
     next({name: 'home'})
+  } else if(to.name == 'main') {
+    store.commit('changeHdShow', 'none');
+    next();
+  } else if(to.name == 'home') {
+    store.commit('changeHdShow', 'Search_1');
+    next();
   } else {
     next();
   }

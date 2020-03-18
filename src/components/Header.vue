@@ -32,6 +32,7 @@
             <li class="item" @click="changeGlobalStatus('userInfo')">账户信息</li>
 <!--            <li class="item">个人中心</li>-->
             <li class="item" @click="changeGlobalStatus('gg')">系统通知</li>
+            <li class="item" @click="goMain()">返回</li>
 <!--            <li class="item">退出登录</li>-->
           </ul>
         </div>
@@ -121,6 +122,10 @@ export default {
       })
   },
   methods: {
+    // 系统返回主页
+    goMain() {
+      this.$router.push({path: '/'})
+    },
     changeSow(val) {
       console.log(val)
 

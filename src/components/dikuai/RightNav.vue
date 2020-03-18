@@ -1,8 +1,5 @@
 <!--
  * @Descripttion:
- * @version:
- * @Date: 2020-01-17 16:46:00
- * @LastEditTime : 2020-02-24 15:27:35
  -->
 <template>
   <div class="right_nav_wrap">
@@ -16,15 +13,6 @@
 
         <div class="nav">
           <div class="top">
-<!--            <div class="item">-->
-<!--              <img src="@/assets/img/info.png" alt="">-->
-<!--              <p>设备</p>-->
-<!--            </div>-->
-<!--            <div class="item">-->
-<!--              <img v-if="homeState.rightNavStatus == 'eq'" src="@/assets/img/nav_eq_on.png" alt="">-->
-<!--              <img v-else src="@/assets/img/nav_eq.png" alt="">-->
-<!--              <p>监测</p>-->
-<!--            </div>-->
             <div class="item">
               <img  src="@/assets/img/gl.png" alt="">
               <p>过滤</p>
@@ -32,10 +20,6 @@
           </div>
 
           <div class="bottom">
-<!--            <div class="item">-->
-<!--              <img src="@/assets/img/dk_jc.png" alt="">-->
-<!--              <p>监测端</p>-->
-<!--            </div>-->
             <div class="item" @click="openShengchan()" :class="hdShow == 'tab_dikuai_shengchan' ? 'active' : ''">
               <img v-if="hdShow == 'tab_dikuai_shengchan'" src="@/assets/img/nav_3_2_on.png" alt="">
               <img v-else src="@/assets/img/nav_3_2.png" alt="">
@@ -48,11 +32,11 @@
             </div>
             <div class="bottom">
               <div class="item" @click="changeDikuaiAction('add')">
-                <span class="iconfont">&#xe631;</span>
+                <Icon style="font-size: 28px" type="ios-alert" />
                 <p>详情</p>
               </div>
-              <div class="item">
-                <span class="iconfont" @click="changeDikuaiAction('add')" style="font-size: 32px; color: #1FBA75;">&#xe62d;</span>
+              <div class="item"  @click="changeDikuaiAction('add')">
+                <Button size="large" type="success" shape="circle" icon="md-add"></Button>
               </div>
             </div>
           </div>

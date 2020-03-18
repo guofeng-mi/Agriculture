@@ -32,7 +32,7 @@ import RightNav from '../components/dikuai/RightNav'
 import DikuaiContent from '../components/dikuai/DikuaiContent'
 import DikuaiContentMapBig from '../components/dikuai/DikuaiContentMapBig'
 import Renwugl from '../components/renwu/Renwugl'
-import Rncon from '../components/renwu/Rncon' // 任务
+import Rncon from '../components/renwu/Rncon'
 import Rnconsy from '../components/renwu/Rnconsy'
 import Rnconxy from '../components/renwu/Rnconxy'
 import Rndone from '../components/renwu/Rndone'

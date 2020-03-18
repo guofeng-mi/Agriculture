@@ -1,112 +1,199 @@
-<!--
- * @Descripttion:
- * @version:
- * @Date: 2020-01-03 09:23:14
- * @LastEditTime : 2020-02-24 13:13:22
- -->
+
 <template>
-  <div class="container">
-    <div class="home">
-      <div class="left">
-        <div class="name">{{hdTitle}}</div>
-        <div class="list_wrap">
-          <!-- 园区列表 -->
-          <ParkList></ParkList>
+  <div class="home_container">
+    <Row>
+      <i-col span="7">
+        <!--左侧信息-->
+        <div class="home__left__wrap">
+          <!--土壤数据灌溉指数-->
+          <div class="home__left__turang">
+            <Turang class="turang_box" />
+            <Gague :data="88" />
+
+          </div>
+          <!--气象数据/病害指数-->
+          <div class="home__left__weather">
+            <Weather />
+          </div>
+
         </div>
-        <div class="add">
-          <div class="con" @click="changeHomeShow('Add')">
-            <img src="@/assets/img/add_on.png" alt="">
-            <p>新建园区</p>
+      </i-col>
+
+
+      <i-col span="10">
+        <!--中间区域-->
+        <div class="home__center__wrap">
+          <!--中间地块图片展示-->
+          <div class="home__center__poster">
+            <Poster />
+          </div>
+          <!--地块列表展示-->
+          <div class="home__center__dikuai">
+            <div class="home__center__dikuai__scro">
+              <template v-for="item in 5">
+                <Dikuai />
+              </template>
+            </div>
+          </div>
+
+          <!--园区列表展示-->
+          <div class="home__center__park">
+            <div class="home__center__park__scro">
+              <template v-for="item in 15">
+                <Park />
+              </template>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- 右侧 nav -->
-      <HomeRightNav></HomeRightNav>
+
+      </i-col>
+
+
+      <i-col span="7">
+        <!--右侧信息-->
+        <div class="home__right_wrap">
+          <!--物候期-->
+          <div class="home__right__wuhouqi">
+            <Wuhouqi />
+          </div>
+          <!--品种占比-->
+          <div class="home__right__percent">
+            <Percent />
+          </div>
+          <!--品种成熟度预测-->
+          <div class="home__right__forecast">
+            <Forecast />
+          </div>
+
+        </div>
+      </i-col>
+    </Row>
+
+    <!--右侧nav-->
+    <div class="home_right__nav_wrap">
+      <Nav />
     </div>
 
-
-    <!-- 新增园区 -->
-    <AddPark v-if="homeShow == 'Add'"></AddPark>
+    <!--园区新增-->
+    <AddPark v-if="homeShow == 'Add'" />
 
   </div>
 </template>
 <script>
-import Park from '../components/park/Park'
-import ParkList from "../components/home/ParkList";
-import HomeRightNav from '../components/home/HomeRightNav'
-import AddPark from '../components/home/AddPark'
+  import Turang from '../components/home/Turang';
+  import Weather from "../components/home/Weather";
+  import Wuhouqi from "../components/home/Wuhouqi";
+  import Percent from '../components/home/Percent';
+  import Forecast from '../components/home/Forecast';
+  import Park from "../components/home/Park";
+  import Gague from '../components/home/Gague';
+  import Poster from '../components/home/Poster';
+  import Dikuai from "../components/home/Dikuai";
+  import Nav from '../components/home/Nav';
+  import AddPark from "../components/home/AddPark";
 
-import { mapState} from 'vuex';
-export default {
-  name: 'home',
-  components: {
-    Park,
-    AddPark,
-    ParkList,
-    HomeRightNav
-  },
-  data() {
-    return {
-      infoShow: false,
-      addPersonShow: false
-    }
-  },
-  computed: {
-      ...mapState({
-          homeState: state => state.homeState,
-          homeShow: state => state.homeShow,
-          hdTitle: state => state.hdTitle
-      })
-  },
-  methods: {
-    changeRightStatus (status) {
-      this.$store.commit('changeHomeState', status);
+  import { mapState} from 'vuex';
+
+  export default {
+    components: {
+      Turang,
+      Weather,
+      Wuhouqi,
+      Percent,
+      Forecast,
+      Park,
+      Gague,
+      Poster,
+      Dikuai,
+      Nav,
+      AddPark
+
     },
-    changeHomeShow (status) {
-      this.$store.commit('changeHomeShow', status);
-    }
-  }
-}
-</script>
+    computed: {
+      ...mapState({
+        homeShow: state => state.homeShow
+      })
+    },
 
-<style scoped lang="stylus">
-@import '../assets/css/global.styl'
-.container
-  padding 0 300px 0 300px
-  box-sizing border-box
-  .home
-    padding 70px
+  }
+</script>
+<style lang="stylus" scoped>
+  .home_container
+    padding-top 82px
     display flex
-    width 100%
     justify-content space-between
-    .left
-      flex 1
-      text-align center
-      .name
-        font-weight bold
-        font-size 22px
-        padding 18px 0
-      .list_wrap
-        width 100%
-        padding 0 32px
-      .add
-        margin 0 32px
-        padding 32px
+
+
+
+    .home__left__wrap
+      padding 20px
+      /*height 100vh*/
+      .home__left__turang
+        border-radius 4px
         background #FFF
-        border-radius 6px
-        .con
+        height 350px
+        width 100%
+        box-shadow 2px 2px 4px rgba(0,0,0,.08), -2px -2px 4px rgba(0,0,0,.08)
+        display flex
+        .turang_box
+          flex 1
+      .home__left__weather
+        border-radius 4px
+        background #FFF
+        margin-top 20px
+        height 450px
+        width 100%
+        box-shadow 2px 2px 4px rgba(0,0,0,.08), -2px -2px 4px rgba(0,0,0,.08)
+
+
+    .home__center__wrap
+      padding-top 20px
+      /*height 100vh*/
+      .home__center__poster
+        height 400px
+
+      .home__center__dikuai
+        max-width 1000px
+        height 200px
+        margin-top 20px
+        .home__center__dikuai__scro
           display flex
-          flex-direction column
-          align-items center
-          justify-content center
-          width 100%
-          height 140px
-          border 2px dashed rgba(0,0,0,.05)
-          border-radius 6px
-          p
-            padding-top 6px
-            cursor pointer
-          img
-            padding-top 6px
-            cursor pointer
+          overflow-x scroll
+          &>div
+            margin-right 12px
+
+      .home__center__park
+        max-width 1000px
+        overflow hidden
+        margin-top 20px
+        padding-bottom 6px
+        .home__center__park__scro
+          overflow-x scroll
+          display flex
+          &>div
+            margin-right 12px
+
+
+    .home__right_wrap
+      /*height 100vh*/
+      padding 20px 20px 0 20px
+      .home__right__wuhouqi
+        background #FFF
+        border-radius 4px
+        box-shadow 2px 2px 4px rgba(0,0,0,.08), -2px -2px 4px rgba(0,0,0,.08)
+      .home__right__percent
+        margin-top 20px
+        background #FFF
+        border-radius 4px
+        box-shadow 2px 2px 4px rgba(0,0,0,.08), -2px -2px 4px rgba(0,0,0,.08)
+      .home__right__forecast
+        background #FFF
+        border-radius 4px
+        margin-top 20px
+        box-shadow 2px 2px 4px rgba(0,0,0,.08), -2px -2px 4px rgba(0,0,0,.08)
+
+
+    .home_right__nav_wrap
+      width 100px
+
 </style>

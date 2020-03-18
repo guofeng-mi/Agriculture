@@ -1,6 +1,6 @@
 /*
- * @Descripttion: 
- * @version: 
+ * @Descripttion:
+ * @version:
  * @Author: Logic
  * @Date: 2019-12-26 14:01:06
  * @LastEditors  : Logic
@@ -24,6 +24,8 @@ import 'dhtmlx-gantt/codebase/locale/locale_cn.js'
 
 // echarts
 import echarts from 'echarts'
+import china from 'echarts/map/json/china.json'
+echarts.registerMap('china', china)
 Vue.prototype.$echarts = echarts;
 
 

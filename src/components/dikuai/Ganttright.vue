@@ -1,8 +1,5 @@
 <!--
  * @Descripttion:
- * @version:
- * @Date: 2020-01-22 16:28:11
- * @LastEditTime : 2020-01-22 17:31:35
  -->
 <template>
   <div class="gantright">
@@ -43,23 +40,23 @@
 
     <div class="add">
       <div class="choose" v-show="show">
-        <div class="item" @click="choose(1)">
+        <div class="item" @click="choose('sf')">
           <img src="@/assets/img/dk_sf.png" alt="">
           <p>施肥</p>
         </div>
-        <div class="item" @click="choose(2)">
+        <div class="item" @click="choose('sy')">
           <img src="@/assets/img/dk_y.png" alt="">
           <p>施药</p>
         </div>
-        <div class="item" @click="choose(3)">
+        <div class="item" @click="choose('ns')">
           <img src="@/assets/img/dk_ns.png" alt="">
           <p>农事</p>
         </div>
-        <div class="item" @click="choose(4)">
+        <div class="item" @click="choose('cj')">
           <img src="@/assets/img/dk_cj.png" alt="">
           <p>采集</p>
         </div>
-        <div class="item" @click="choose(5)">
+        <div class="item" @click="choose('xy')">
           <img src="@/assets/img/dk_xy.png" alt="">
           <p>巡园</p>
         </div>

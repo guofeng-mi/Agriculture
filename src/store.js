@@ -22,7 +22,7 @@ export default new Vuex.Store({
      * tab_dikuai_shengchan 生产端 任务
      * tab_dikuai_shuyuan 溯源端
      * */
-    hdShow: 'Search_1',
+    hdShow: 'tab_dikuai_shengchan',
 
     /**生产端tab控制 通过tab控制组件切换
      * rewu 任务管理
@@ -30,7 +30,7 @@ export default new Vuex.Store({
      * xunyuan 巡园记录
      * huibao 工作汇报
      */
-    hdShengchanTab: 'rewu',
+    hdShengchanTab: 'zuoye',
 
     /**溯源端tab控制 通过tab控制组件切换
      * shuyuan 溯源管理
@@ -75,7 +75,7 @@ export default new Vuex.Store({
      * ShuYuan 溯源端
      * DikuaiContent 地块详情
      * */
-    dikuaiShow: 'false',
+    dikuaiShow: 'ShengCan',
 
     /**控制地块详情与新增地块显示
      * see 查看地块详情

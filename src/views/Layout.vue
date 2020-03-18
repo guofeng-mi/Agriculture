@@ -3,6 +3,7 @@
  -->
 <template>
   <div class="layout">
+
     <div class="header_wrapper">
 
       <!-- 公司信息 -->
@@ -14,7 +15,7 @@
       <!-- 产品主页 -->
       <Product v-if="layoutShow == 'product'"></Product>
 
-      <Header style="z-index: 5;"></Header>
+      <Header style="z-index: 5;" v-if="hdShow != 'none'"></Header>
       <!-- 预警信息 -->
       <Warning v-if="layoutShow == 'warning'"></Warning>
       <!-- 品种管理 -->
@@ -42,7 +43,8 @@
 </template>
 
 <script>
-import Header from '../components/Header'
+// import Header from '../components/Header'
+import Header from "../components/Public/Header"
 import Info from '../components/park/Info'
 import KaoqinManage from '../components/park/KaoqinManage'
 
@@ -59,6 +61,7 @@ import Yxcfgl from '../components/table/Yxcfgl'
 import UserInfo from '../components/user/UserInfo'
 import Gonggao from '../components/user/Gonggao'
 import Tablebg from '../components/sjtable/Table'
+
 
 import { mapState} from 'vuex';
 export default {
@@ -84,8 +87,12 @@ export default {
       globalStatus: state => state.globalStatus,
       tableStatus: state => state.tableStatus,
       homeShow: state => state.homeShow,
-      layoutShow: state => state.layoutShow
+      layoutShow: state => state.layoutShow,
+      hdShow: state => state.hdShow
     })
+  },
+  created() {
+    console.log(this.hdShow)
   },
   methods: {
     changeGlobalStatus (status) {

@@ -1,8 +1,5 @@
 <!--
  * @Descripttion: 扫码统计
- * @version:
- * @Date: 2020-02-11 16:03:32
- * @LastEditTime: 2020-02-17 15:57:31
  -->
 <template>
   <div class="sm_echarts">

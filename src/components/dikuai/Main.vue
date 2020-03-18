@@ -1,8 +1,5 @@
 <!--
  * @Descripttion: 地块主页
- * @version:
- * @Date: 2020-01-09 13:20:14
- * @LastEditTime : 2020-02-24 15:16:17
  -->
 <template>
   <div class="dk_main">

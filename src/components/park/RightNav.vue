@@ -1,30 +1,20 @@
 <!--
- * @Descripttion:
- * @version:
- * @Date: 2020-01-17 16:46:00
- * @LastEditTime : 2020-02-24 13:19:16
+ * @Descripttion: 园区右侧nav
  -->
 <template>
   <div class="right_nav_wrap">
     <div class="right_wrap">
       <div class="content">
-        <!-- 考勤右侧 list_nav  -->
-        <KaoqinRight v-if="navState == '1'" @kqClose="kqClose"></KaoqinRight>
         <!-- 设备右侧 list_nav -->
         <ShebeiRight v-if="navState == '2'" @eqClose="eqClose"></ShebeiRight>
       </div>
 
       <div class="nav">
         <div class="top">
-<!--          <div class="item" :class="navState == '1' ? 'active' : ''" @click="navState = 1">-->
-<!--            <img v-if="navState == '1'" src="@/assets/img/nav_kq_on.png" alt="">-->
-<!--            <img v-else src="@/assets/img/nav_kq.png" alt="">-->
-<!--            <p>考勤</p>-->
-<!--          </div>-->
           <div class="item" :class="navState == '2' ? 'active' : ''" @click="navState = 2">
             <img v-if="navState == '2'" src="@/assets/img/nav_eq_on.png" alt="">
             <img v-else src="@/assets/img/nav_eq.png" alt="">
-            <p>设备</p>
+            <p :style="{color: navState == '2' ? '#38f' : '#222'}">设备</p>
           </div>
           <div class="item" @click="changeLayoutShow('nongzi')">
             <img src="@/assets/img/nav_nongzi.png" alt="">
@@ -37,11 +27,13 @@
         </div>
         <div class="bottom">
           <div class="item" @click="changeParkShow('content')">
-            <span class="iconfont">&#xe631;</span>
+            <Icon style="font-size: 28px" type="ios-alert" />
             <p>详情</p>
           </div>
-          <div class="item">
-            <span class="iconfont" @click="changeParkShow('add')" style="font-size: 32px; color: #1FBA75;">&#xe62d;</span>
+
+          <!--新增按钮-->
+          <div class="item" @click="changeParkShow('add')">
+            <Button size="large"  type="success" shape="circle" icon="md-add"></Button>
           </div>
         </div>
       </div>
@@ -49,14 +41,12 @@
   </div>
 </template>
 <script>
-  import KaoqinRight from '../park/KaoqinRight'
   import ShebeiRight from '../park/ShebeiRight'
   import { mapState} from 'vuex';
   export default {
     name: '',
     components: {
-      KaoqinRight,
-      ShebeiRight,
+      ShebeiRight
     },
     data() {
       return {
@@ -98,17 +88,16 @@
     position relative
     .content
       position fixed
-      right 61px
+      right 101px
       top 83px
       width 239px
       height calc(100vh - 83px)
-    /* background #FFF */
     .nav
       position fixed
       right 0
       top 83px
       height calc(100vh - 83px)
-      width 60px
+      width 100px
       display flex
       flex-direction column
       align-items center
@@ -120,11 +109,14 @@
           flex-direction column
           align-items center
           justify-content center
-          width 60px
-          height 80px
+          width 100px
+          height 100px
           cursor pointer
           p
             padding-top 8px
+          img
+            width 30px
+            height 30px
         .active
           background #FFF
           color $minColor_b

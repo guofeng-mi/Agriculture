@@ -13,30 +13,50 @@
       <Ganttright @changeStatus="changeStatus"></Ganttright>
     </div>
 
+    <!--施肥任务-->
+    <Sf style="z-index: 999"  @close="close" v-if="addShow == 'sf'"/>
 
-    <!--新增农事任务-->
-<!--    <GanttNongsi @close="close" v-if="addShow"/>-->
-    <!--新增农事任务-->
-    <GanttShiyao />
+    <!--农事任务-->
+    <Ns style="z-index: 999" @close="close" v-if="addShow == 'ns'" />
+
+    <!--施药任务-->
+    <Sy style="z-index: 999" @close="close" v-if="addShow == 'sy'" />
+
+
+    <!--巡园任务-->
+    <Xy style="z-index: 999" @close="close" v-if="addShow == 'xy'" />
+
+    <!--采集任务-->
+    <Cj style="z-index: 999" @close="close" v-if="addShow == 'cj'"/>
+
+
   </div>
 </template>
 
 <script>
 import 'dhtmlx-gantt'
 import Ganttright from '../dikuai/Ganttright'
-import GanttNongsi from "./GanttNongsi"
-import GanttShiyao from "./GanttShiyao"
+
+import Ns from './Add/Ns'
+import Sy from "./Add/Sy";
+import Sf from "./Add/Sf";
+import Xy from "./Add/Xy";
+import Cj from './Add/Cj'
 
 export default {
   name: 'gantt',
   components: {
     Ganttright,
-    GanttNongsi,
-    GanttShiyao
+    Sf,
+    Ns,
+    Sy,
+    Xy,
+    Cj
+
   },
   data() {
     return {
-      addShow: false,
+      addShow: 'sf',
       tasks: {
         data: [
           /*
@@ -137,7 +157,7 @@ export default {
     handleClick(id) {
       console.log(id)
       this.tasks.data.push({
-        id: '1_2', text: "施肥2", start_date: "05-01-2020", duration: 8, order: 20,
+        id: '1_2', text: "施肥2", start_date: "05-01-2020", duration: 8,
         progress: 0.6, parent: 1
       });
       // gantt.addTask({

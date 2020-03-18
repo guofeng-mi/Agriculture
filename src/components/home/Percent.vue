@@ -1,0 +1,49 @@
+<template>
+  <div class="percent_container">
+    <div class="percent_hd">
+      <p>葡萄品种占比</p>
+    </div>
+
+
+
+    <Row class="percent_list_wrap">
+      <i-col span="8" class="percent_list_item">
+        <p>葡萄品种</p>
+        <i-circle :percent="80" stroke-color="#C01158" trail-color="#FFFEBE" stroke-width="12" trail-width="12" stroke-linecap="square" ></i-circle>
+      </i-col>
+
+      <i-col span="8" class="percent_list_item">
+        <p>红葡萄品种</p>
+        <i-circle :percent="80" stroke-color="#C01158" trail-color="#FF1D7E" stroke-width="12" trail-width="12" stroke-linecap="square" ></i-circle>
+      </i-col>
+
+      <i-col span="8" class="percent_list_item">
+        <p>白葡萄品种</p>
+        <i-circle :percent="80" stroke-color="#D3FDB6" trail-color="#FFFEE6" stroke-width="12" trail-width="12" stroke-linecap="square" ></i-circle>
+      </i-col>
+    </Row>
+  </div>
+</template>
+<style lang="stylus" scoped>
+.percent_container
+  padding 12px
+  .percent_hd
+    p
+      font-size 16px
+      color #46c183
+
+  .percent_list_wrap
+    display flex
+    justify-content space-between
+    .percent_list_item
+      flex 1
+      display flex
+      flex-direction column
+      align-items center
+      padding 12px 0 16px 0
+      p
+        padding 12px 0
+        text-align center
+        font-size 16px
+
+</style>
