@@ -2,9 +2,23 @@
 <template>
   <div class="rw_name_container">
     <p>任务标题</p>
-    <i-input :value.sync="value" placeholder="请输入..."></i-input>
+    <i-input v-model="text" placeholder="请输入..."></i-input>
   </div>
 </template>
+<script>
+  export default {
+    data () {
+      return {
+        text: ''
+      }
+    },
+    watch: {
+      text(val) {
+        this.$emit('sendName', val)
+      }
+    }
+  }
+</script>
 <style lang="stylus" scoped>
   .rw_name_container
     display flex

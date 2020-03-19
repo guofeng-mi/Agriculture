@@ -6,12 +6,26 @@
     </div>
 
     <div class="requirement__wrap">
-      <textarea name="" placeholder="请输入" id="" cols="30" rows="4"></textarea>
+      <textarea v-model="yqVal" name="" placeholder="请输入" id="" cols="30" rows="4"></textarea>
     </div>
 
 
   </div>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        yqVal: ''
+      }
+    },
+    watch: {
+      yqVal() {
+        this.$emit('yaoqiuSend', this.yqVal);
+      }
+    }
+  }
+</script>
 <style lang="stylus" scoped>
   .rw_requirement_container
     .requirement__title

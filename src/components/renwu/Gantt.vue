@@ -14,20 +14,20 @@
     </div>
 
     <!--施肥任务-->
-    <Sf style="z-index: 999"  @close="close" v-if="addShow == 'sf'"/>
+    <Sf @sendVal="getVal" style="z-index: 900"  @close="close" v-if="addShow == 'sf'"/>
 
     <!--农事任务-->
-    <Ns style="z-index: 999" @close="close" v-if="addShow == 'ns'" />
+    <Ns style="z-index: 900" @close="close" v-if="addShow == 'ns'" />
 
     <!--施药任务-->
-    <Sy style="z-index: 999" @close="close" v-if="addShow == 'sy'" />
+    <Sy style="z-index: 900" @close="close" v-if="addShow == 'sy'" />
 
 
     <!--巡园任务-->
-    <Xy style="z-index: 999" @close="close" v-if="addShow == 'xy'" />
+    <Xy style="z-index: 900" @close="close" v-if="addShow == 'xy'" />
 
     <!--采集任务-->
-    <Cj style="z-index: 999" @close="close" v-if="addShow == 'cj'"/>
+    <Cj style="z-index: 900" @close="close" v-if="addShow == 'cj'"/>
 
 
   </div>
@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      addShow: 'sf',
+      addShow: false,
       tasks: {
         data: [
           /*
@@ -102,6 +102,12 @@ export default {
     this.ganttInit()
   },
   methods: {
+    // 获取新增或修改的信息
+    getVal(val) {
+      console.log("获取信息",val)
+      this.tasks.data.push({...val, text: val.data.text, id: val.data.id, parent: val.data.parent, start_date: val.data.start_date, duration: 30});
+      this.ganttInit();
+    },
     ganttInit() {
       const that = this;
 
@@ -169,7 +175,7 @@ export default {
     },
     test() {
       console.log(this.tasks.data);
-      this.ganttInit()
+      // this.ganttInit()
     }
   }
 }

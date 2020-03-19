@@ -1,17 +1,6 @@
 <template>
-  <div class="rw_course_container">
-
-    <div class="course__title">
-      <p>任务教程</p>
-    </div>
-
-    <div class="course__wrap">
-      <div id="wangeditor">
-        <div ref="editorElem" style="text-align:left;"></div>
-      </div>
-    </div>
-
-
+  <div id="wangeditor">
+    <div ref="editorElem" style="text-align:left;"></div>
   </div>
 </template>
 
@@ -57,33 +46,11 @@
         'image', // 插入图片
         'table', // 表格
         'code', // 插入代码
-        // 'undo', // 撤销
-        // 'redo' // 重复
+        'undo', // 撤销
+        'redo' // 重复
       ];
       this.editor.create(); // 创建富文本实例
-    },
-    watch: {
-      editorContent(val) {
-        this.$emit('jiaochengSend', val);
-      }
     }
 
   }
 </script>
-
-<style lang="stylus" scoped>
-  .rw_course_container
-    .course__title
-      background #eff3ff
-      display flex
-      align-items center
-      justify-content space-between
-      padding 0 40px
-      height 40px
-
-    .course__wrap
-      padding 12px 40px
-
-
-
-</style>
