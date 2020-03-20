@@ -9,6 +9,9 @@
       this.drawLine(this.mapList);
     },
     props: ['mapList'],
+    created() {
+      console.log(this.mapList)
+    },
     methods: {
       drawLine(list){
         const that = this;

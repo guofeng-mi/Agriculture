@@ -3,9 +3,6 @@
  -->
 <template>
   <div class="container">
-    <div class="test">
-      <Button type="success" @click="test">Success</Button>
-    </div>
     <div class="gantt" ref="gantt"></div>
 
     <!--右侧过滤-->
@@ -17,17 +14,17 @@
     <Sf @sendVal="getVal" style="z-index: 900"  @close="close" v-if="addShow == 'sf'"/>
 
     <!--农事任务-->
-    <Ns style="z-index: 900" @close="close" v-if="addShow == 'ns'" />
+    <Ns @sendVal="getVal" style="z-index: 900" @close="close" v-if="addShow == 'ns'" />
 
     <!--施药任务-->
-    <Sy style="z-index: 900" @close="close" v-if="addShow == 'sy'" />
+    <Sy @sendVal="getVal" style="z-index: 900" @close="close" v-if="addShow == 'sy'" />
 
 
     <!--巡园任务-->
-    <Xy style="z-index: 900" @close="close" v-if="addShow == 'xy'" />
+    <Xy @sendVal="getVal" style="z-index: 900" @close="close" v-if="addShow == 'xy'" />
 
     <!--采集任务-->
-    <Cj style="z-index: 900" @close="close" v-if="addShow == 'cj'"/>
+    <Cj @sendVal="getVal" style="z-index: 900" @close="close" v-if="addShow == 'cj'"/>
 
 
   </div>
@@ -52,7 +49,6 @@ export default {
     Sy,
     Xy,
     Cj
-
   },
   data() {
     return {
@@ -78,22 +74,24 @@ export default {
             progress: 0.6, parent: 1
           },
           * */
-          {
-            id: 1, text: "施肥任务", start_date: "01-01-2020", duration: 18, order: 10,
-            progress: 0.4, open: true
-          },
-          {
-            id: 2, text: "农事任务"
-          },
-          {
-            id: 3, text: "施药任务"
-          },
-          {
-            id: 4, text: "采集任务"
-          },
-          {
-            id: 5, text: "巡园任务"
-          }
+          // {
+          //   id: 1, text: "施肥任务", start_date: "01-01-2020", duration: 18, order: 10, progress: 0, open: true
+          // },
+          // {
+          //   id: 1, text: "施肥任务", start_date: "01-01-2020", open: true
+          // },
+          // {
+          //   id: 2, text: "农事任务", open: true
+          // },
+          // {
+          //   id: 3, text: "施药任务", open: true
+          // },
+          // {
+          //   id: 4, text: "采集任务", open: true
+          // },
+          // {
+          //   id: 5, text: "巡园任务", open: true
+          // }
         ]
       }
     }
@@ -103,9 +101,87 @@ export default {
   },
   methods: {
     // 获取新增或修改的信息
+    // id: 'id', text: "任务名称", start_date: "开始时间", duration: 持续时间, progress: 完成百分比 0.5, parent: 父级id
     getVal(val) {
       console.log("获取信息",val)
-      this.tasks.data.push({...val, text: val.data.text, id: val.data.id, parent: val.data.parent, start_date: val.data.start_date, duration: 30});
+      console.log(val)
+      let flag = false;
+      let obj = {};
+      switch (Number(val.data.parent)) {
+        case 1:
+          if(this.tasks.data.length == 0) {
+            flag = true;
+            obj = {id: 1, text: "施肥任务", open: true};
+          } else {
+            this.tasks.data.forEach(item => {
+              console.log(item)
+              if(item.id != 1) {
+                flag = true;
+                obj = {id: 1, text: "施肥任务", open: true};
+              }
+            });
+          }
+          break;
+        case 2:
+          if(this.tasks.data.length == 0) {
+            flag = true;
+            obj = {id: 2, text: "农事任务", open: true};
+          } else {
+            this.tasks.data.forEach(item => {
+              if(item.id != 2) {
+                flag = true;
+                obj = {id: 2, text: "农事任务", open: true};
+              }
+            });
+          }
+          break;
+        case 3:
+          if(this.tasks.data.length == 0) {
+            flag = true;
+            obj = {id: 3, text: "施药任务", open: true};
+          } else {
+            this.tasks.data.forEach(item => {
+              if(item.id != 3) {
+                flag = true;
+                obj = {id: 3, text: "施药任务", open: true};
+              }
+            });
+          }
+          break;
+        case '4':
+          if(this.tasks.data.length == 0) {
+            flag = true;
+            obj = {id: 4, text: "采集任务", open: true};
+          } else {
+            this.tasks.data.forEach(item => {
+              if(item.id != 4) {
+                flag = true;
+                obj = {id: 4, text: "采集任务", open: true};
+              }
+            });
+          }
+          break;
+        case 5:
+          if(this.tasks.data.length == 0) {
+            flag = true;
+            obj = {id: 5, text: "巡园任务", open: true};
+          } else {
+            this.tasks.data.forEach(item => {
+              if(item.id != 5) {
+                flag = true;
+                obj = {id: 5, text: "巡园任务", open: true};
+              }
+            });
+          }
+          break;
+      }
+
+      console.log(flag, obj)
+      if(flag) {
+        this.tasks.data.push(obj,{...val, text: val.data.text, id: val.data.id, parent: val.data.parent, start_date: val.data.start_date, duration: val.data.duration});
+      } else {
+        this.tasks.data.push({...val, text: val.data.text, id: val.data.id, parent: val.data.parent, start_date: val.data.start_date, duration: val.data.duration});
+      }
       this.ganttInit();
     },
     ganttInit() {
@@ -142,11 +218,12 @@ export default {
       ];
 
       //显示到进度条上的文本   计划名称和任务进度百分比
-      gantt.templates.task_text = function (start, end, task) {
-        return "<b style='text-align:left;'>计划名称:</b> " + task.text +"    <span style='text-align:left;'>" +"完成计划："+ Math.round(task.progress * 100) + "% </span>";
-      };
+      // gantt.templates.task_text = function (start, end, task) {
+      //   return "<b style='text-align:left;'>计划名称:</b> " + task.text +"    <span style='text-align:left;'>" +"完成计划："+ Math.round(task.progress * 100) + "% </span>";
+      // };
       gantt.attachEvent("onTaskClick", function(id, e) {
-        that.handleClick(id)
+        // that.handleClick(id)
+        console.log(id, that.tasks)
       });
 
       // 初始化
@@ -159,23 +236,6 @@ export default {
     changeStatus(val) {
       console.log(val);
       this.addShow = val;
-    },
-    handleClick(id) {
-      console.log(id)
-      this.tasks.data.push({
-        id: '1_2', text: "施肥2", start_date: "05-01-2020", duration: 8,
-        progress: 0.6, parent: 1
-      });
-      // gantt.addTask({
-      //   id:'1_1',
-      //   text:"施肥1",
-      //   start_date:"01-01-2020",
-      //   duration:28
-      // }, "施肥任务", 1);
-    },
-    test() {
-      console.log(this.tasks.data);
-      // this.ganttInit()
     }
   }
 }
@@ -187,9 +247,5 @@ export default {
   .gantt
     width 100%
     height calc(100vh - 84px)
-  .test
-    position fixed
-    right 200px
-    top 20px
-    z-index 20
+
 </style>

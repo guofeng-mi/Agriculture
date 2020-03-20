@@ -15,10 +15,10 @@
 
     <div class="caiji_scro_box">
       <ul class="caiji_list">
-        <li class="caiji_list__item" v-for="(item, index) in 22" :key="item">
+        <li class="caiji_list__item" v-for="(item, index) in list" :key="item">
           <i>{{index + 1}}</i>
-          <p>广西</p>
-          <p>465161565</p>
+          <p class="city">{{item.city}}</p>
+          <p>{{item.num}}</p>
           <span>条</span>
         </li>
       </ul>
@@ -26,6 +26,62 @@
 
   </div>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        list: [
+          {
+            city: '北京市',
+            num: '541545'
+          },{
+            city: '天津市',
+            num: '52454'
+          },{
+            city: '石家庄市',
+            num: '415454'
+          },{
+            city: '保定市',
+            num: '54589452415'
+          },{
+            city: '太原市',
+            num: '54545454'
+          },{
+            city: '赤峰市',
+            num: '458531545'
+          },{
+            city: '沈阳市',
+            num: '166354786'
+          },{
+            city: '朝阳市',
+            num: '5471464845'
+          },{
+            city: '辽源市',
+            num: '654195'
+          },{
+            city: '鹤岗市',
+            num: '56487'
+          },{
+            city: '上海市',
+            num: '684789896'
+          },{
+            city: '连云港市',
+            num: '987634'
+          },{
+            city: '杭州市',
+            num: '19872634891'
+          },{
+            city: '台州市',
+            num: '19082491'
+          },{
+            city: '蚌埠市',
+            num: '19847'
+          },
+        ]
+      }
+    }
+  }
+</script>
 <style lang="stylus" scoped>
   .caiji_container
     padding 22px 40px
@@ -47,6 +103,8 @@
       border-bottom 1px solid #EEE
       margin 32px 0 12px 0
       padding 12px 20px
+
+
     .caiji_scro_box
       width 100%
       overflow-x hidden
@@ -59,6 +117,8 @@
           display flex
           padding 6px 0
           justify-content space-between
+          p
+            width 80px
           i
             display block
             font-style normal

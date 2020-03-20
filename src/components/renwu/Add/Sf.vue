@@ -1,6 +1,6 @@
 <!--施肥任务添加与修改-->
 <template>
-  <div id="ElementWindSf" class="renwu_sf_drag_wrap"  :class="windowStatus == 'small' ? 'renwu_sf_drag_wrap_small' : 'renwu_sf_drag_wrap_big'">
+  <div id="ElementWindSf" ref="viewWrap" class="renwu_sf_drag_wrap"  :class="windowStatus == 'small' ? 'renwu_sf_drag_wrap_small' : 'renwu_sf_drag_wrap_big'">
 
     <!--顶部拖动部分-->
     <div class="renwu_drag_hd" @mousedown="drag">
@@ -8,13 +8,14 @@
 
       <!--关闭与窗口控制-->
       <div class="right">
-        <Icon type="md-contract" v-show="windowStatus == 'big'" id="small" @click="windowStatus = 'small'" title="还原" />
-        <Icon type="md-qr-scanner" v-show="windowStatus == 'small'" id="big" @click="windowStatus = 'big'" title="最大化" />
+        <Icon type="md-contract" v-show="windowStatus == 'big'" id="small" @click="windowCtr('small')" title="还原" />
+        <Icon type="md-qr-scanner" v-show="windowStatus == 'small'" id="big" @click="windowCtr('big')" title="最大化" />
         <Icon type="md-close" id="close" @click="close" title="关闭" />
       </div>
     </div>
 
     <div class="renwu_sf_drag_body" :class="windowStatus == 'small' ? 'renwu_sf_drag_body_small' : 'renwu_sf_drag_body_big'">
+
 
       <!--任务标题-->
       <div class="name_wrap">
@@ -24,7 +25,12 @@
       <Row>
         <!--左侧信息-->
         <i-col span="6">
-          <LeftInfo @sendVal="getLeftInfo" s_type="true" s_start_date="true" s_end_date="true" s_grade="true" s_cycle="true" />
+          <LeftInfo @sendVal="getLeftInfo"
+            s_type="true"
+            s_start_date="true"
+            s_duration="true"
+            s_grade="true"
+            s_cycle="true" />
         </i-col>
 
         <!--右侧信息-->
@@ -85,8 +91,6 @@
             jiaocheng: '' // 教程 应该是富文本内容
           }
         }
-
-
       }
     },
     methods:{
@@ -96,6 +100,39 @@
         this.$emit('sendVal', this.form);
         this.close();
       },
+
+      // 验证所有信息
+      reg() {
+        let nodesc = '';
+
+        if(!this.form.cycle) {
+          nodesc = '请选周期！';
+        }
+        if(!this.form.grade) {
+          nodesc = '请选优先级！';
+        }
+        if(!this.form.end_date) {
+          nodesc = '请选择结束时间！';
+        }
+        if(!this.form.start_date) {
+          nodesc = '请选择开始时间！';
+        }
+        if(!this.form.type) {
+          nodesc = '请选择发送类型！';
+        }
+        if(!this.form.text) {
+          nodesc = '请填写任务标题！';
+        }
+
+        if(nodesc) {
+          this.$Notice.warning({
+            title: '提示',
+            desc: nodesc
+          });
+        } else {
+          return true;
+        }
+      },
       // 获取左侧信息
       getLeftInfo(val) {
         console.log("获取 leftInfo 值",val)
@@ -104,6 +141,7 @@
         this.form.data.end_date = val.end_date;
         this.form.data.grade = val.grade;
         this.form.data.cycle = val.cycle;
+        this.form.data.duration = val.duration;
       },
       // 获取右侧信息
       getTableVal(val) {
@@ -117,9 +155,22 @@
         this.$emit('close', 'close')
       },
 
+      // 控制视口大小
+      windowCtr(val) {
+        this.windowStatus = val;
+        switch (val) {
+          case 'small':
+            this.$refs.viewWrap.style.left = "50%";
+            this.$refs.viewWrap.style.top = "50%";
+            break;
+          case 'big':
+            this.$refs.viewWrap.style.left = "0";
+            this.$refs.viewWrap.style.top = "0";
+            break
+        }
+      },
       //鼠标按下拖拽
       drag(e){
-        console.log(e)
         if(this.windowStatus == 'small') {
           var oDiv = e.path[1];
           var disX = e.clientX - oDiv.offsetLeft;
@@ -161,6 +212,7 @@
     position fixed
     left 0
     top 0
+    transform translate(0, 0)
   .renwu_sf_drag_wrap
     text-align center
     /*width 900px*/
@@ -200,10 +252,12 @@
       width 100%
       height 100%
     .renwu_sf_drag_body
+      position relative
       padding-top 32px
       /*width 900px*/
       /*height 80vh*/
       overflow-y scroll
+
 
 
 

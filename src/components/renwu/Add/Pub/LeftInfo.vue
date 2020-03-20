@@ -36,7 +36,7 @@
     <div class="action__item" v-if="s_duration">
       <p>持续天数</p>
       <div class="action__choose data">
-        <Input-number :max="1000" style="width: 100%" v-model="duration" size="small" :min="0"></Input-number>
+        <Input-number style="width: 100%" v-model="duration" size="small" :min="1"></Input-number>
         <span>天</span>
       </div>
     </div>
@@ -94,7 +94,7 @@
         // 结束时间
         end_date: '',
         // 持续时间
-        duration: 0,
+        duration: 1,
         // 优先级
         grade: '',
         grade_list: [

@@ -10,9 +10,10 @@
       <div class="cj__item">
         <div class="item__title">采集点</div>
         <div class="item__choose__wrap">
-          <Checkbox-group :model.sync="test">
-            <Checkbox :value="item" v-for="item in 22" :key="item">{{item}}</Checkbox>
-          </Checkbox-group>
+          <CheckboxGroup v-model="list.spot.choose" @on-change="checkAllGroupChange">
+            <Checkbox :label="item.label" v-for="item in list.spot.list" :key="item.id"></Checkbox>
+          </CheckboxGroup>
+
         </div>
       </div>
 
@@ -22,55 +23,18 @@
         <p>采集指标</p>
       </div>
 
-      <div class="cj__item__type2">
+      <div class="cj__item__type2" v-for="item in list.type" :key="item.name">
         <div class="item__title">
-          <p>果</p>
+          <p>{{item.name}}</p>
         </div>
         <div class="item__choose__wrap">
-          <Checkbox-group :model.sync="test">
-            <Checkbox :value="item" v-for="item in 6" :key="item">{{item}}</Checkbox>
-          </Checkbox-group>
+          <CheckboxGroup v-model="item.choose" @on-change="checkAllGroupChange">
+            <Checkbox :label="item_2.label" v-for="item_2 in item.list" :key="item_2.id"></Checkbox>
+          </CheckboxGroup>
         </div>
       </div>
-
-      <div class="cj__item__type2">
-        <div class="item__title">
-          <p>叶</p>
-        </div>
-        <div class="item__choose__wrap">
-          <Checkbox-group :model.sync="test">
-            <Checkbox :value="item" v-for="item in 15" :key="item">{{item}}</Checkbox>
-          </Checkbox-group>
-        </div>
-      </div>
-
-      <div class="cj__item__type2">
-        <div class="item__title">
-          <p>茎</p>
-        </div>
-        <div class="item__choose__wrap">
-          <Checkbox-group :model.sync="test">
-            <Checkbox :value="item" v-for="item in 4" :key="item">{{item}}</Checkbox>
-          </Checkbox-group>
-        </div>
-      </div>
-
-      <div class="cj__item__type2">
-        <div class="item__title">
-          <p>其他</p>
-        </div>
-        <div class="item__choose__wrap">
-          <Checkbox-group :model.sync="test">
-            <Checkbox :value="item" v-for="item in 16" :key="item">{{item}}</Checkbox>
-          </Checkbox-group>
-        </div>
-      </div>
-
-
-
 
     </div>
-
 
   </div>
 </template>
@@ -78,8 +42,54 @@
   export default {
     data() {
       return {
-        test: ''
+        value: '',
+        test: [],
+
+        list: {
+          spot: {
+            name: '采集点',
+            list: [
+              {
+                id: 1,
+                label: '1'
+              },{
+                id: 2,
+                label: '2'
+              }
+            ],
+            choose: []
+          },
+          type: [
+            {
+              name: '果',
+              list: [{id: 1, label: 1},{id: 2, label: 2},{id: 3, label: 3},{id: 4, label: 4},{id: 5, label: 5},{id: 6, label: 6},{id: 7, label: 8},{id: 9, label: 9},{id: 10, label: 10},{id: 11, label: 11},{id: 12, label: 12},{id: 13, label: 13},{id: 14, label: 14},{id: 15, label: 15}],
+              choose: []
+            },
+            {
+              name: '叶',
+              list: [{id: 1, label: 1}],
+              choose: []
+            },
+            {
+              name: '茎',
+              list: [{id: 1, label: 1}],
+              choose: []
+            },
+            {
+              name: '其他',
+              list: [{id: 1, label: 1}],
+              choose: []
+            }
+          ]
+        }
       }
+    },
+    methods: {
+      checkAllGroupChange(val) {
+        console.log(val);
+        console.log(this.list)
+        this.$emit('topSend', this.list);
+      },
     }
   }
 </script>

@@ -17,12 +17,12 @@
     </div>
 
     <ul class="huanjing_list_wrap">
-      <li class="huanjing_list__item" v-for="item in 7" :key="item">
-        <div>
-          <p>23.8</p>
-        </div>
-        <span>空气湿度</span>
-      </li>
+        <Col span="6" class="huanjing_list__item" v-for="item in list" :key="item.name">
+          <div>
+            <p>{{item.num}}</p>
+          </div>
+          <span>{{item.name}}</span>
+        </Col>
     </ul>
 
   </div>
@@ -31,7 +31,28 @@
   export default {
     data() {
       return {
-        test: ''
+        test: '',
+        list: [
+          {
+            name: '空气温度',
+            num: 23.8
+          },{
+            name: '空气湿度',
+            num: 35
+          },{
+            name: '光照强度',
+            num: 128
+          },{
+            name: '风向',
+            num: '西南'
+          },{
+            name: '风速',
+            num: 0
+          },{
+            name: '降雨量',
+            num: 0
+          }
+        ]
       }
     }
   }
@@ -62,7 +83,6 @@
     display flex
     flex-wrap wrap
     .huanjing_list__item
-      width 70px
       display flex
       flex-direction column
       align-items center

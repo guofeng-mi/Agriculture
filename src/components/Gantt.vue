@@ -1,16 +1,11 @@
 <!--
- * @Descripttion: 
- * @version: 
- * @Author: Logic
- * @Date: 2020-01-08 13:40:38
- * @LastEditors  : Logic
- * @LastEditTime : 2020-01-08 13:48:43
+ * @Descripttion: 作业流程图
  -->
 <template>
   <div class="container" ref="gantt">
   </div>
 </template>
- 
+
 <script>
 import 'dhtmlx-gantt'
 export default {
