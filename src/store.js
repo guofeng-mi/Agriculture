@@ -30,7 +30,7 @@ export default new Vuex.Store({
      * xunyuan 巡园记录
      * huibao 工作汇报
      */
-    hdShengchanTab: 'zuoye',
+    hdShengchanTab: 'rewu',
 
     /**溯源端tab控制 通过tab控制组件切换
      * shuyuan 溯源管理

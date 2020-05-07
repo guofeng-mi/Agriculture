@@ -23,7 +23,6 @@
     <DikuaiContent v-if="dikuaiAction != 'false'"/>
 <!--    选择地图-->
     <DikuaiContentMapBig v-if="dikuaiActionMap != 'false'"/>
-
   </div>
 </template>
 
@@ -122,6 +121,7 @@ export default {
   height 100%
   padding-top 81px
   display flex
+  background #FFF
   .left_wrapper
     flex 1
   .guolv_wrapper
@@ -129,9 +129,5 @@ export default {
     height calc(100vh - 84px)
   .r_nav_wrapper
     width 100px
-
-
-
-
 
 </style>

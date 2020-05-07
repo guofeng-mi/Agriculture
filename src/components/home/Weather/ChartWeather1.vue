@@ -12,11 +12,31 @@
     data() {
       return {
         time: '2019-01',
-        zuowu: '白菜'
+        zuowu: '白菜',
+        dataArr: [],
+        WS_airTemp_arr: [], // 气温，单位℃
+        WS_airHum_arr: [], // 湿度，单位%
       }
     },
+    props: ['WS_airTemp', 'WS_airHum'],
     mounted(){
-      this.drawLine();
+      setTimeout(() => {
+        // console.log('=>>>> 接受数据 ',this.WS_airTemp, this.WS_airHum)
+        let dataArr = [];
+  
+        this.WS_airTemp_arr = this.WS_airTemp.map(item => {
+          dataArr.push(item.at);
+          return item.value
+        })
+        this.dataArr = dataArr;
+        this.WS_airHum_arr = this.WS_airHum.map(item => {
+          return item.value
+        })
+        // console.log(this.WS_airTemp_arr)
+        // console.log(this.WS_airHum_arr)
+        // console.log(this.dataArr)
+        this.drawLine();
+      }, 500)
     },
     methods: {
       drawLine(){
@@ -27,11 +47,8 @@
           },
           tooltip: {
             trigger: 'axis',
-            axisPointer: {
-              type: 'cross',
-              label: {
-                backgroundColor: '#6a7985'
-              }
+            position: function (point) {
+              return [point[0] + 20, point[1] - 50];
             }
           },
           grid: {
@@ -44,7 +61,7 @@
             {
               type: 'category',
               boundaryGap: false,
-              data: ['1', '2', '3', '4', '5', '6', '7'],
+              data: this.dataArr, // ['1', '2', '3', '4', '5', '6', '7'],
               splitLine:{
                 show:false     //去掉网格线
               },
@@ -78,13 +95,15 @@
           ],
           series: [
             {
+              name: '气温',
               type: 'line',
-              color: '#5dd095',
-              data: [120, 132, 101, 134, 90, 230, 210]
+              color: '#fead52',
+              data: this.WS_airTemp_arr //[120, 132, 101, 134, 90, 230, 210]
             },{
+              name: '湿度',
               type: 'line',
-              color: '#5dd095',
-              data: [150, 32, 11, 234, 200, 30, 250]
+              color: '#ffe002',
+              data: this.WS_airHum_arr, //[150, 32, 11, 234, 200, 30, 250]
             }
           ]
         });

@@ -1,3 +1,8 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-11 17:19:33
+ -->
 <template>
   <div class="eqwuliu_container">
     <div class="eqwuliu_hd">
@@ -26,51 +31,78 @@
       drawLine(){
         let myChartAlert = this.$echarts.init(document.getElementById('eqwuliuChart'))
         myChartAlert.setOption({
-            color: ['#3398DB'],
-            tooltip: {
-              trigger: 'axis',
-              axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-              }
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                axisLabel: {
+                  show: true,
+                    textStyle: {
+                      color: '#c3dbff',  //更改坐标轴文字颜色
+                      fontSize : 10      //更改坐标轴文字大小
+                    }
+                },
+                axisTick: {
+                      show: false
+                  },
+                  axisLine:{
+                      lineStyle:{
+                          color:'#FFF' //更改坐标轴颜色
+                      }
+                },
+                data: ['设备一', '设备二', '设备三', '设备四', '设备五', '设备六']
             },
             grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '3%',
-              containLabel: true
+              top: '30px',
+              bottom: '30px',
+              left: '30px',
+              right: '30px'
             },
-            xAxis: [
-              {
-                type: 'category',
-                data: ['设备1', '设备2', '设备3', '设备4', '设备5', '设备6'],
-                axisTick: {
-                  alignWithLabel: true
-                }
-              }
-            ],
-            yAxis: [
-              {
-                type: 'value'
-              }
-            ],
-            series: [
-              {
-                name: '提示',
-                type: 'bar',
-                barWidth: '60%',
-                data: [10, 52, 200, 334, 390, 330, 220],
-                itemStyle: {
-                  normal: {
-                    //这里是重点
-                    color: function(params) {
-                      //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
-                      var colorList = ['#059FD5','#E1812A', '#124A9D', '#D61776', '#43B89B','#6CADBF'];
-                      return colorList[params.dataIndex]
+            yAxis: {
+                type: 'value',
+                splitLine :{    //网格线
+                  lineStyle:{
+                    type:'solid'    //设置网格线类型 dotted：虚线   solid:实线
+                  },
+                  show:true //隐藏或显示
+                },
+                axisLabel: {
+                  show: true,
+                    textStyle: {
+                      color: '#c3dbff',  //更改坐标轴文字颜色
+                      fontSize : 10      //更改坐标轴文字大小
                     }
-                  }
+                },
+                axisTick: {
+                      show: false
+                  },
+                  axisLine:{
+                      lineStyle:{
+                          color:'#FFF' //更改坐标轴颜色
+                      }
+                },
+            },
+            series: [{
+                data: [0, 102, 350, 250, 550, 530, 500],
+                type: 'line',
+                smooth: true,
+                symbol:'none',
+                lineStyle: {
+                  normal: {
+                    color: 'transparent',
+                     type:'dotted'  //'dotted'虚线 'solid'实线
+                  },
+                },
+                areaStyle: {         // 颜色自上而下渐变
+                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{        // 1代表上面
+                        offset: 0,
+                        color: 'rgba(6,125,177,1)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(6,125,177,0)'
+                    }]),
+                    opacity: 1    // 填充区域透明度
                 }
-              }
-            ]
+            }]
           });
       }
     }
@@ -78,7 +110,7 @@
 </script>
 <style lang="stylus" scoped>
   .eqwuliu_container
-    padding 12px
+    padding 24px 56px
     .eqwuliu_hd
       display flex
       align-items center
@@ -86,7 +118,8 @@
       p
         flex 1
         font-size 16px
-        color #46c183
+        color #FFF
+        font-size 16px
     .eqwuliu_chart_wrap
       #eqwuliuChart
         width 100%

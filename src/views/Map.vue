@@ -1,10 +1,6 @@
 <!--
  * @Descripttion: 
  * @version: 
- * @Author: Logic
- * @Date: 2020-01-09 10:20:26
- * @LastEditors  : Logic
- * @LastEditTime : 2020-01-09 13:43:53
  -->
 <template>
   <div class="map_wrap">

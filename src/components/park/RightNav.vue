@@ -12,28 +12,33 @@
       <div class="nav">
         <div class="top">
           <div class="item" :class="navState == '2' ? 'active' : ''" @click="navState = 2">
-            <img v-if="navState == '2'" src="@/assets/img/nav_eq_on.png" alt="">
-            <img v-else src="@/assets/img/nav_eq.png" alt="">
+            <!-- <img v-if="navState == '2'" src="@/assets/img/nav_eq_on.png" alt="">
+            <img v-else src="@/assets/img/nav_eq.png" alt=""> -->
+            <img src="@/assets/img/park/r1.png" alt="">
             <p :style="{color: navState == '2' ? '#38f' : '#222'}">设备</p>
           </div>
           <div class="item" @click="changeLayoutShow('nongzi')">
-            <img src="@/assets/img/nav_nongzi.png" alt="">
+            <!-- <img src="@/assets/img/nav_nongzi.png" alt=""> -->
+            <img src="@/assets/img/park/r2.png" alt="">
             <p>农资</p>
           </div>
           <div class="item" @click="changeLayoutShow('product')">
-            <img src="@/assets/img/nav_product.png" alt="">
+            <!-- <img src="@/assets/img/nav_product.png" alt=""> -->
+            <img src="@/assets/img/park/r3.png" alt="">
             <p>产品</p>
           </div>
         </div>
         <div class="bottom">
           <div class="item" @click="changeParkShow('content')">
-            <Icon style="font-size: 28px" type="ios-alert" />
+            <!-- <Icon style="font-size: 28px" type="ios-alert" /> -->
+            <img src="@/assets/img/park/7.png" alt="">
             <p>详情</p>
           </div>
 
           <!--新增按钮-->
           <div class="item" @click="changeParkShow('add')">
-            <Button size="large"  type="success" shape="circle" icon="md-add"></Button>
+            <img src="@/assets/img/park/add.png" alt="" style="width: 35px">
+            <!-- <Button size="large"  type="success" shape="circle" icon="md-add"></Button> -->
           </div>
         </div>
       </div>
@@ -116,7 +121,7 @@
             padding-top 8px
           img
             width 30px
-            height 30px
+            /* height 30px */
         .active
           background #FFF
           color $minColor_b

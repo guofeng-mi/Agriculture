@@ -1,10 +1,7 @@
 <!--
  * @Descripttion: 
  * @version: 
- * @Author: Logic
- * @Date: 2020-01-19 10:33:06
- * @LastEditors  : Logic
- * @LastEditTime : 2020-01-20 09:36:46
+ * @Date: 2020-03-10 16:54:48
  -->
 <template>
   <div class="echart_box">
@@ -26,15 +23,45 @@ export default {
       let myChart = echarts.init(document.getElementById('chart_example'));
 
       let option = {
-          color: ['#5BD094', '#006699'],
+        //   color: ['#5BD094', '#006699'],
+          color: [
+                new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "#3A60DF" // 0% 处的颜色
+                    }, {
+                      offset: 1,
+                      color: "#00C5F4" // 100% 处的颜色
+                    }
+                ], false),
+                new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "#FFB70B" // 0% 处的颜色
+                    }, {
+                      offset: 1,
+                      color: "#FFE034" // 100% 处的颜色
+                    }
+                ], false)
+            ],
           tooltip: {
               trigger: 'axis',
               axisPointer: {
-                  type: 'shadow'
+                //   type: 'shadow'
               }
           },
+          grid: {
+            left: '10%',
+            right: '10%',
+            top: '20%',
+            bottom: '10%'
+          },
           legend: {
-              data: ['有效积温', '年度光照']
+              right: '0',
+              data: ['有效积温', '年度光照'],
+                textStyle: {
+                    // color: 'red'
+                }
           },
           xAxis: [
               {
@@ -56,9 +83,9 @@ export default {
                   data: [5705.2, 5705.2]
               },
               {
-                  name: '年度光照',
-                  type: 'bar',
-                  data: [500, 182]
+                name: '年度光照',
+                type: 'bar',
+                data: [2000, 1082]
               }
           ]
       };
@@ -72,6 +99,10 @@ export default {
 <style scoped lang="stylus">
 .echart_box
   width 100%
+  box-shadow 0 0 6px rgba(0,0,0,.14)
+  border-radius 6px
+  padding 22px
+  height 240px  
   #chart_example
     width 100%
     height 200px

@@ -2,86 +2,70 @@
   <div class="main_container">
 
     <!--顶部-->
-    <MainHd style="position: fixed;left: 0;top: 0;width: 100%;" />
+    <MainHd style="box-shadow: none; position: fixed;left: 0;top: 0;width: 100%;z-index: 10;" />
 
-    <div class="main_content">
 
-      <div class="main_content_top_wrap">
-        <!--左侧信息-->
-        <div class="main_content_top_left_wrap">
-          <!--基本信息-->
-          <div class="item">
-            <div class="con">
-              <BaseInfo />
-            </div>
-          </div>
-          <!--环境监测-->
-          <div class="item">
-            <div class="con">
-              <Huanjing />
-            </div>
-          </div>
-          <!--农品追溯-->
-          <div class="item">
-            <div class="con">
-              <Zuishu/>
-            </div>
-          </div>
-        </div>
-        <!--地图区域-->
-        <div class="main_content_top_map_wrap">
-          <div class="main_content_top_map_con">
-            <Map @retMap="retMap" :mapList="mapList" />
-<!--            <ChinaMap @retMap="retMap" :mapList="mapList"/>-->
-          </div>
-        </div>
-        <!--右侧采集-->
-        <div class="main_content_top_caiji_wrap">
-          <div class="main_content_top_caiji_list">
-            <Caiji />
-          </div>
+
+    <div class="wrapper__box">
+
+      <!--top-->
+      <div class="top__wrap">
+        <div class="t__left__wrap pub-shadow">
+          <Eq />
         </div>
 
+        <div class="t__center__wrap pub-shadow">
+          <Huanjing />
+        </div>
+
+        <div class="t__right__wrap pub-shadow">
+          <Eqwulian />
+        </div>
       </div>
 
-      <!--底部信息-->
-      <div class="main_content_footer_wrap">
-        <!--生产现场-->
-        <div class="item">
-          <div class="item__con">
+      <div class="bottom__wrap">
+        <div class="l__box__wrap">
+          <div class="l-t__wrap">
+            <div class="data__wrap pub-shadow">
+              <Caiji />
+            </div>
+
+            <div class="map__wrap">
+              <!-- <Map />  -->
+              <Map3d />
+            </div>
+          </div>
+          
+          <div class="l-b__wrap">
+            <div class="market__wrap pub-shadow">
+              <Market />
+            </div>
+
+            <div class="origin__wrap pub-shadow">
+              <Zuishu />
+            </div>
+          </div>
+        </div>
+
+        <div class="r__box__wrap">
+          <div class="today__data pub-shadow">
+            <Today />
+          </div>
+          <div class="pd__wrap pub-shadow">
             <Scene />
           </div>
         </div>
-        <!--今日数据-->
-        <div class="item">
-          <div class="item__con">
-            <Today />
-          </div>
-        </div>
-        <!--市场动态-->
-        <div class="item">
-          <div class="item__con">
-            <Market />
-          </div>
-        </div>
-        <!--物联储备-->
-        <div class="item">
-          <div class="item__con">
-            <Eqwulian />
-          </div>
-        </div>
+
       </div>
 
-
     </div>
-
 
   </div>
 </template>
 
 <script>
   import MainHd from '../components/Main/MainHd'
-  import BaseInfo from '../components/Main/BaseInfo'
+  // import BaseInfo from '../components/Main/BaseInfo'
   import Huanjing from '../components/Main/Huanjing'
   import Zuishu from '../components/Main/Zuishu'
   import Scene from '../components/Main/Scene'
@@ -89,13 +73,18 @@
   import Market from '../components/Main/Market'
   import Today from "../components/Main/Today";
   import Eqwulian from "../components/Main/Eqwulian";
-  import Map from '../components/Main/Map'
-  import ChinaMap from "../components/Main/ChinaMap";
+  // import Map from '../components/Main/Map'
+  // import ChinaMap from "../components/Main/ChinaMap";
+
+
+// .....
+  import Eq from '../components/Main/Eq'
+  import Map3d from '../components/Main/Map3d'
 
   export default {
     components: {
       MainHd,
-      BaseInfo,
+      // BaseInfo,
       Huanjing,
       Zuishu,
       Scene,
@@ -103,8 +92,12 @@
       Market,
       Today,
       Eqwulian,
-      Map,
-      ChinaMap
+      // Map,
+      // ChinaMap,
+
+
+      Eq,
+      Map3d
     },
     data() {
       return {
@@ -132,76 +125,45 @@
     }
   }
 </script>
-
+<style scoped>
+.pub-shadow {
+  background-image: url('../assets/img/main/bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+</style>
 <style lang="stylus" scoped>
 .main_container
   width 100%
-  background #F5F8FF
-  .main_content
-    width 100%
-    padding-top 80px
+  box-sizing border-box
+  background radial-gradient(rgb(4,104,214), rgb(1, 45, 99))
+  padding-bottom 12px
 
 
-    .main_content_top_wrap
-      width 100%
-      display flex
-      justify-content space-between
+  .wrapper__box
+    padding 0 16px
+    color #FFF
+    padding-top 60px
+    .top__wrap
+      display grid
+      grid-template-columns 254px 4fr 4fr
+      grid-column-gap 43px
 
-      .main_content_top_left_wrap
-        width 420px
-        .item
-          width 100%
-          padding 35px 20px 0 20px
-          box-sizing border-box
-          .con
-            width 100%
-            height 234px
-            background #FFF
-            box-sizing border-box
-            box-shadow 2px 2px 4px rgba(0,0,0,.05), -2px -2px 4px rgba(0,0,0,.05)
-            border-radius 4px
-          &:first-child
-            padding-top 24px
-            .con
-              background transparent
-              box-shadow none
-              height 80px
-
-      .main_content_top_map_wrap
-        flex 1
-        padding 20px
-        box-sizing border-box
-        .main_content_top_map_con
-          width 100%
-          height 620px
-          background #FFF
-
-      .main_content_top_caiji_wrap
-        width 360px
-        padding 20px
-        .main_content_top_caiji_list
-          height 620px
-          width 100%
-          background #FFF
-          box-shadow 2px 2px 4px rgba(0,0,0,.05), -2px -2px 4px rgba(0,0,0,.05)
+    .bottom__wrap
+      display grid
+      grid-template-columns 2fr 525px
+      grid-column-gap 40px
+      .l-t__wrap
+        display grid
+        grid-template-columns 247px 1fr
+      .l-b__wrap
+        display grid
+        grid-template-columns 1fr 1fr
+        grid-column-gap 48px
 
 
-    .main_content_footer_wrap
-      width 100%
-      display flex
-      justify-content space-between
-      padding 0 20px
-      .item
-        flex 1
-        padding 0 12px 12px 12px
-        .item__con
-          height 240px
-          border-radius 4px
-          background #FFF
-          box-shadow 2px 2px 4px rgba(0,0,0,.05), -2px -2px 4px rgba(0,0,0,.05)
-        &:first-child
-          padding-left 0
-        &:last-child
-          padding-right 0
+    .r__box__wrap
+      .pd__wrap
+        position relative
 
 </style>

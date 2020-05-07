@@ -1,3 +1,8 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-13 11:11:43
+ -->
 <template>
   <div class="percent_container">
     <div class="percent_hd">
@@ -5,21 +10,20 @@
     </div>
 
 
-
     <Row class="percent_list_wrap">
       <i-col span="8" class="percent_list_item">
+        <i-circle :percent="80" :stroke-color="['#4468FF', '#A350FE']" trail-color="#F6F6F6" :stroke-width="6" :trail-width="4" stroke-linecap="square" >80%</i-circle>
         <p>葡萄品种</p>
-        <i-circle :percent="80" stroke-color="#C01158" trail-color="#FFFEBE" stroke-width="12" trail-width="12" stroke-linecap="square" ></i-circle>
       </i-col>
 
       <i-col span="8" class="percent_list_item">
+        <i-circle :percent="80" :stroke-color="['#09DEAE', '#4468FF']" trail-color="#F6F6F6" :stroke-width="6" :trail-width="4" stroke-linecap="square" >80%</i-circle>
         <p>红葡萄品种</p>
-        <i-circle :percent="80" stroke-color="#C01158" trail-color="#FF1D7E" stroke-width="12" trail-width="12" stroke-linecap="square" ></i-circle>
       </i-col>
 
       <i-col span="8" class="percent_list_item">
+        <i-circle :percent="80" :stroke-color="['#F2A100', '#FBD003']" trail-color="#FFFEE6" :stroke-width="6" :trail-width="4" stroke-linecap="square" >80%</i-circle>
         <p>白葡萄品种</p>
-        <i-circle :percent="80" stroke-color="#D3FDB6" trail-color="#FFFEE6" stroke-width="12" trail-width="12" stroke-linecap="square" ></i-circle>
       </i-col>
     </Row>
   </div>
@@ -30,11 +34,12 @@
   .percent_hd
     p
       font-size 16px
-      color #46c183
+      // color #46c183
 
   .percent_list_wrap
     display flex
     justify-content space-between
+    margin-top 12px
     .percent_list_item
       flex 1
       display flex

@@ -1,7 +1,12 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-17 10:39:23
+ -->
 <template>
   <div class="addBtn_container">
     <div class="con" @click="changeParkShow('add')">
-      <img src="@/assets/img/add_on.png" alt="">
+      <img src="@/assets/img/park/add.png" alt="">
       <p>新建地块</p>
     </div>
   </div>
@@ -17,7 +22,7 @@
 </script>
 <style lang="stylus" scoped>
 .addBtn_container
-  margin-top 22px
+  // margin-top 22px
   padding 32px
   background #FFF
   border-radius 6px
@@ -28,7 +33,7 @@
     justify-content center
     width 100%
     height 100px
-    border 2px dashed rgba(0,0,0,.05)
+    // border 2px dashed rgba(0,0,0,.05)
     border-radius 6px
     p
       padding-top 6px

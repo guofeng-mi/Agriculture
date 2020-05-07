@@ -1,4 +1,9 @@
 /*
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-10 16:54:46
+ */
+/*
  * @Descripttion:
  */
 import Vue from 'vue'
@@ -18,6 +23,11 @@ const router = new Router({
       name: 'layout',
       component: Layout,
       children: [
+        {
+          path: '/test',
+          name: 'test',
+          component: () => import('./views/Test.vue')
+        },
         {
           path: '/',
           name: 'main',

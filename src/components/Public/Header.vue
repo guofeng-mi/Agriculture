@@ -13,27 +13,23 @@
       <div class="right">
         <div class="guanli">
           <div @click="changeSow('manage')">
-            <img src="@/assets/img/manage.png">
-            <p>管理</p>
+            <p>平台管理</p>
           </div>
           <ul class="list_wrap" v-show="myHdShow == 'manage'">
             <li class="item" @click="changeTableStatus('pzgl')">品种管理</li>
             <li class="item" @click="changeTableStatus('wlgl')">基础物料管理</li>
             <li class="item" @click="changeTableStatus('usergl')">用户管理</li>
             <li class="item" @click="changeTableStatus('warngh')">预警规划</li>
-            <!--          <li class="item">采集指标</li>-->
             <li class="item" @click="changeTableStatus('whqgl')">物候期管理</li>
             <li class="item" @click="changeTableStatus('yxcfgl')">有效期成分管理</li>
           </ul>
         </div>
         <div class="user">
-          <img @click="changeSow('user')" src="@/assets/img/user.png">
+          <p @click="changeSow('user')">个人中心</p>
           <ul class="list_wrap" v-show="myHdShow == 'user'">
             <li class="item" @click="changeGlobalStatus('userInfo')">账户信息</li>
-            <!--            <li class="item">个人中心</li>-->
             <li class="item" @click="changeGlobalStatus('gg')">系统通知</li>
             <li class="item" @click="goMain()">返回系统首页</li>
-            <!--            <li class="item">退出登录</li>-->
           </ul>
         </div>
       </div>
@@ -42,13 +38,14 @@
     <div class="header_bottom">
       <div class="nav_btn">
         <div class="click" @click="changeSow('nav')">
-          <img src="@/assets/img/nav.png">
+          <img src="@/assets/img/pub/nav.png">
           <p>导航菜单</p>
         </div>
         <div class="nav_box" v-show="myHdShow == 'nav'">
           <Nav></Nav>
         </div>
         <div class="table">
+          <img src="@/assets/img/pub/table.png">
           <p @click="tableShow = !tableShow">报表</p>
           <div class="list_wrap" v-show="tableShow">
             <p @click="showReport()">大数据报表</p>
@@ -59,13 +56,12 @@
       <div class="center">
         <div class="search" v-if="hdShow == 'Search_1'">
           <input type="text" placeholder="搜索">
-          <span class="iconfont">&#xe63c;</span>
+          <div class="search-btn">
+            <img class="search-icon" src="@/assets/img/pub/search.png" alt="">
+          </div>
         </div>
         <!-- 地块 -->
-        <!--            <div class="tab" v-if="headerStatus.show == 'dikuai'">-->
-        <!--              <p :class="headerStatus == 'tab_1' ? 'active' : ''" @click="changeHeaderStatus('tab_1')">环境监控</p>-->
-        <!--              <p :class="headerStatus == 'tab_2' ? 'active' : ''" @click="changeHeaderStatus('tab_2')">设备报表</p>-->
-        <!--            </div>-->
+        
 
         <!-- 生产端 任务 -->
         <div class="tab" v-if="hdShow == 'tab_dikuai_shengchan'">
@@ -86,7 +82,7 @@
         </div>
       </div>
       <div class="right" @click="changeLayoutShow('warning')">
-        <img src="@/assets/img/warning.png">
+        <img src="@/assets/img/pub/info.png">
         <div class="num">12</div>
       </div>
     </div>
@@ -185,8 +181,10 @@
     top 0
     left 0
     width 100%
-    background #FFF
+    // background #FFF
     padding 4px 12px 6px 12px
+    background linear-gradient(to right, #002D64, #005DCF)
+    color #FFF
     .header_top
       position relative
       padding 8px 12px 6px
@@ -202,13 +200,13 @@
           cursor pointer
           p
             font-size 22px
-            opacity .7
+            // opacity .7
       .title
         position absolute
         left 50%
         top 50%
         transform translate(-50%, -50%)
-        color #222
+        color #FFF
         font-size 16px
       .right
         display flex
@@ -241,6 +239,7 @@
               text-align center
               padding 12px
               border-bottom 1px solid #EEE
+              color #222
               &:last-child
                 border none
         .user
@@ -265,6 +264,7 @@
               padding 12px
               border-bottom 1px solid #EEE
               cursor pointer
+              color #222
               &:last-child
                 border none
     .header_bottom
@@ -294,19 +294,22 @@
           left -24px
           top 33px
           background #FFF
-          box-shadow 3px 0 5px rgba(0,0,0,.1)
+          // box-shadow 3px 0 5px rgba(0,0,0,.1)
         .table
           position relative
-          padding-left 4px
+          padding-left 12px
           border-left 1px solid #EEE
           cursor pointer
+          display flex
+          align-items center
           .list_wrap
             position absolute
             border 1px solid #EEE
             background #FFF
             border-radius 3px
             z-index 10
-            margin-top 6px
+            margin-top 32px
+            color #222
             p
               white-space nowrap
               text-align center
@@ -319,8 +322,21 @@
         left 50%
         top 50%
         transform translate(-50%, -50%)
-        img
-          cursor pointer
+        border-radius 8px
+        overflow hidden
+        // box-shadow 0 0 6px rgba(255,255,255,0.14)
+        .search-btn
+          position absolute
+          right 0
+          top 0
+          height 26px
+          width 40px
+          display flex
+          align-items center
+          justify-content center
+          background linear-gradient(to right, #4262E7, #02C4F6)
+          .search-icon
+            cursor pointer
         input
           width 300px
           height 26px
@@ -328,9 +344,13 @@
           background #FFF
           text-align center
           font-size 13px
-          border-radius 4px
           outline none
-          box-shadow 2px 2px 4px rgba(0,0,0,.05), -2px -2px 4px rgba(0,0,0,.05)
+          background rgba(5,191,245, .25)
+          color #FFF
+          text-align left
+          padding-left 16px
+          &::placeholder  
+            color #FFF
         span
           position absolute
           right 6px
@@ -352,6 +372,7 @@
         img
           width 16px
           height 20px
+          cursor pointer
         span
           font-size 18px
         .num

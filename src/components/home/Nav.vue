@@ -18,7 +18,8 @@
       </div>
       <!--新增按钮-->
       <div class="nav__item__add" @click="changeHomeShow('Add')">
-        <Button size="large" type="success" shape="circle" icon="md-add"></Button>
+        <img style="width: 35px" src="@/assets/img/park/add.png" alt="">
+        <!-- <Button size="large" type="success" shape="circle" icon="md-add"></Button> -->
       </div>
     </div>
 
@@ -32,7 +33,7 @@
 <script>
   import Kaoqin from "./Kaoqin";
 
-  import { mapState} from 'vuex';
+  // import { mapState} from 'vuex';
   export default {
     components: {
       Kaoqin

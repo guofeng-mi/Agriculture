@@ -1,3 +1,8 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-11 17:14:12
+ -->
 <template>
   <div class="today_container">
     <div class="today_hd">
@@ -25,62 +30,148 @@
     methods: {
       drawLine(){
         let myChartAlert = this.$echarts.init(document.getElementById('todayChart'))
-        myChartAlert.setOption(
+        myChartAlert.setOption({
+          // tooltip: {},
+          // legend: {show: false},
+          // xAxis: {
+          //   data: ["数据采集", "智能控制","成功控制","图片采集","智能预警","农事作业"]
+          // },
+          // yAxis: {
+
+          // },
 
 
-          {
-            dataset: {
-              source: [
-                ['score', 'amount', 'product'],
-                [89.3, 58212, '农事作业'],
-                [57.1, 78254, '智能预警'],
-                [74.4, 41032, '图片采集'],
-                [50.1, 12755, '成功控制'],
-                [68.1, 79146, '智能控制'],
-                [19.6, 91852, '数据采集']
-              ]
-            },
-            grid: {
-              x: 60,
-              y: 20,
-              x2: 10,
-              y2: 20
-            },
-            xAxis: {name: 'amount'},
-            yAxis: {type: 'category'},
-            series: [
-              {
-                type: 'bar',
-                encode: {
-                  x: 'amount',
-                  y: 'product'
-                },
-                barGap:'-100%',
-                barCategoryGap:'40%',
-                animation: false,
-                itemStyle: {
-                  normal: {
-                    //这里是重点
-                    color: function(params) {
-                      //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
-                      var colorList = ['#00A2CE','#6B1EA8', '#45B897', '#EC7E1F', '#123DA6','#C5237C'];
-                      return colorList[params.dataIndex]
-                    }
+    tooltip: {
+        trigger: 'axis',
+        backgroundColor: '#FACB03',
+        extraCssText: 'box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);',
+        textStyle: {
+            color: '#FFF',
+        },
+    },
+    grid: {
+        top: '12%',
+        left: '1%',
+        right: '11%',
+        bottom: '2.5%',
+        containLabel: true
+    },
+    yAxis: [{
+        type: 'category',
+        data: ['数据采集', '智能控制', '成功控制', '图片采集', '智能预警', '农事作业'],
+        inverse: true,
+        
+        axisTick: {
+            alignWithLabel: true,
+        },
+        axisLabel: {
+            margin: 10,
+            textStyle: {
+                fontSize: 12,
+                color: 'white'
+            }
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#FFF'
+            }
+        }
+    }],
+    xAxis: [{
+        type: 'value',
+        axisLabel: {
+            margin: 10,
+            interval: 1, //横轴信息全部显示  
+            rotate: 0, //-15度角倾斜显示  
+            textStyle: {
+                fontSize: 12,
+                color: 'white',
+            }
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#FFF'
+            }
+        },
+        splitLine: {
+          show: false
+        }
+    }],
+
+          series: [
+            {
+              name: '数据',
+              type: 'bar',
+              barWidth: 10,
+              emphasis: {
+                  barBorderRadius: 0,
+                  itemStyle: {
+                    color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                      {
+                        offset: 0,
+                        color: "#FCD204" // 0% 处的颜色
+                      }, {
+                        offset: 1,
+                        color: "#F2A000" // 100% 处的颜色
+                      }
+                    ], false)
                   }
+              },
+              itemStyle: {
+                normal: {
+                  barBorderRadius: 10,
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                    {
+                      offset: 0,
+                      color: "#3A60DF" // 0% 处的颜色
+                    }, {
+                      offset: 1,
+                      color: "#00C5F4" // 100% 处的颜色
+                    }
+                  ], false)
                 }
-              }
-            ]
-          }
+              },
+              data: [9999, 8888, 2222, 5555, 7777, 6666]
+            }
+        ]
 
 
-        );
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
       }
     }
   }
 </script>
 <style lang="stylus" scoped>
   .today_container
-    padding 12px
+    padding 32px 50px
+
+
     .today_hd
       display flex
       align-items center
@@ -88,7 +179,7 @@
       p
         flex 1
         font-size 16px
-        color #46c183
+        color #FFF
     .today_chart_wrap
       #todayChart
         width 100%

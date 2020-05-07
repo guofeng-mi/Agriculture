@@ -5,13 +5,13 @@
         <div class="left">
           <p>{{ title }}</p>
           <div class="zs">
-            <img src="@/assets/img/zs.png" alt="">
+            <img src="@/assets/img/park/8.png" alt="">
             <span>追溯</span>
           </div>
         </div>
         <div class="right">
           <div class="dk" @click="toDikuai(1)">
-            <img src="@/assets/img/info.png" alt="">
+            <img src="@/assets/img/park/7.png" alt="">
             <span>地块信息</span>
           </div>
           <p class="del" @click="del(1)">删除</p>
@@ -44,22 +44,27 @@
       <div class="b_wrap">
         <div class="left_eq">
           <div class="item">
+            <img src="@/assets/img/park/9.png" alt="">
             <p>预警</p>
             <span>0</span>
           </div>
           <div class="item">
+            <img src="@/assets/img/park/3.png" alt="">
             <p>在线设备</p>
             <span>5</span>
           </div>
           <div class="item">
+            <img src="@/assets/img/park/4.png" alt="">
             <p>离线</p>
             <span>0</span>
           </div>
           <div class="item">
+            <img src="@/assets/img/park/5.png" alt="">
             <p>作物</p>
             <span>葡萄</span>
           </div>
           <div class="item">
+            <img src="@/assets/img/park/2.png" alt="">
             <p>品种</p>
             <span>阳光玫瑰</span>
           </div>
@@ -112,7 +117,7 @@
   .content
     padding 12px 22px
     background #FFF
-    margin-top 22px
+    // margin-top 22px
     .hd
       display flex
       align-items center
@@ -182,14 +187,24 @@
       display flex
       align-items flex-start
       .left_eq
+        height 240px
         width 45%
-        padding-right 5%
+        padding 22px
+        box-sizing border-box
+        border-radius 6px
+        // padding-right 5%
+        box-shadow 0 0 6px rgba(0,0,0,.14)
         .item
           display flex
           align-items center
           justify-content space-between
           border-bottom 1px solid #EEE
           padding 12px 0
+          img 
+            width 14px
+          p 
+            flex 1
+            padding-left 8px
       .echart
         width 55%
         padding-left 5%

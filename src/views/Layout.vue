@@ -15,7 +15,11 @@
       <!-- 产品主页 -->
       <Product v-if="layoutShow == 'product'"></Product>
 
+
+      <!-- header -->
       <Header style="z-index: 5;" v-if="hdShow != 'none'"></Header>
+
+
       <!-- 预警信息 -->
       <Warning v-if="layoutShow == 'warning'"></Warning>
       <!-- 品种管理 -->

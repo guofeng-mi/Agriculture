@@ -1,4 +1,9 @@
 <!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-10 16:54:49
+ -->
+<!--
  * @Descripttion: 园区界面
  -->
 <template>
@@ -20,9 +25,9 @@
         <Dikuai />
       </template>
 
-      <!--新增地块按钮-->
-      <AddBtn />
     </div>
+      <!--新增地块按钮-->
+      <AddBtn style="margin-top: 12px;" />
 
     <!-- 右侧 nav -->
     <RightNav :con_status="'park_info'"></RightNav>
@@ -78,9 +83,16 @@ export default {
 <style scoped lang="stylus">
 @import '../assets/css/global.styl'
 .park_container
+  background #FFF
   padding 83px 300px 0 300px
+  box-sizing border-box
+  min-height 100vh
   .park_con
-    padding 0 100px
+    // padding 0 100px
+    // border 1px solid red
+    box-shadow 0 0 12px rgba(0,0,0,.06)
+    margin-top 12px
+    border-radius 6px
     .title
       text-align center
       padding 12px 0

@@ -13,30 +13,34 @@
 
         <div class="nav">
           <div class="top">
-            <div class="item">
+            <!-- <div class="item">
               <img  src="@/assets/img/gl.png" alt="">
               <p>过滤</p>
-            </div>
+            </div> -->
           </div>
 
           <div class="bottom">
             <div class="item" @click="openShengchan()" :class="hdShow == 'tab_dikuai_shengchan' ? 'active' : ''">
-              <img v-if="hdShow == 'tab_dikuai_shengchan'" src="@/assets/img/nav_3_2_on.png" alt="">
-              <img v-else src="@/assets/img/nav_3_2.png" alt="">
+              <!-- <img v-if="hdShow == 'tab_dikuai_shengchan'" src="@/assets/img/nav_3_2_on.png" alt="">
+              <img v-else src="@/assets/img/nav_3_2.png" alt=""> -->
+                <img style="width: 25px" src="@/assets/img/dikuai/2.png" alt="">
               <p>生产端</p>
             </div>
             <div class="item" @click="openSuyuan('ShuYuan')" :class="hdShow == 'tab_dikuai_shuyuan' ? 'active' : ''">
-              <img v-if="hdShow == 'tab_dikuai_shuyuan'" src="@/assets/img/nav_3_3_on.png" alt="">
-              <img v-else src="@/assets/img/nav_3_3.png" alt="">
+              <!-- <img v-if="hdShow == 'tab_dikuai_shuyuan'" src="@/assets/img/nav_3_3_on.png" alt=""> -->
+              <!-- <img v-else src="@/assets/img/nav_3_3.png" alt=""> -->
+                <img style="width: 25px" src="@/assets/img/dikuai/3.png" alt="">
               <p>溯源端</p>
             </div>
             <div class="bottom">
               <div class="item" @click="changeDikuaiAction('add')">
-                <Icon style="font-size: 28px" type="ios-alert" />
+                <!-- <Icon style="font-size: 28px" type="ios-alert" /> -->
+                <img style="width: 25px" src="@/assets/img/dikuai/4.png" alt="">
                 <p>详情</p>
               </div>
               <div class="item"  @click="changeDikuaiAction('add')">
-                <Button size="large" type="success" shape="circle" icon="md-add"></Button>
+                <img style="width: 35px" src="@/assets/img/park/add.png" alt="">
+                <!-- <Button size="large" type="success" shape="circle" icon="md-add"></Button> -->
               </div>
             </div>
           </div>

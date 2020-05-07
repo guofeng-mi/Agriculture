@@ -1,3 +1,8 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-11 13:22:07
+ -->
 <template>
   <div class="main__hd">
     <div class="main__logo">平台LOGO</div>
@@ -17,7 +22,11 @@
   padding 0 20px
   height 60px
   box-shadow 0 2px 4px rgba(0,0,0,.03)
-  background #FFF
+  // background #FFF
+  background linear-gradient(to right, rgb(1, 45, 99), rgb(3,67,142), rgb(1, 45, 99))
+  color #FFF
+
+  
   .main__logo
     font-size 26px
   .main__title

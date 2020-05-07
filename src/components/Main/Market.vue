@@ -1,26 +1,29 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-11 17:14:12
+ -->
 <template>
-  <div class="market_container">
-    <div class="market_hd">
+  <div class="today_container">
+    <div class="today_hd">
       <p>市场动态</p>
-      <Select v-model="time" size="small" style="width:90px">
-        <Option value="2019-01">2019-01</Option>
-        <Option value="2019-02">2019-02</Option>
-      </Select>
-      <Select v-model="zuowu" size="small" style="width:80px;margin-left: 20px">
-        <Option value="白菜">白菜</Option>
-        <Option value="玉米">玉米</Option>
-      </Select>
+      <mySelect style="margin-right: 12px;" />
+      <mySelect />
     </div>
 
-    <div class="market_chart_wrap">
-      <div id="marketChart"></div>
+    <div class="today_chart_wrap">
+      <div id="market"></div>
     </div>
 
 
   </div>
 </template>
 <script>
+  import mySelect from '../Public/Select'
   export default {
+    components: {
+      mySelect
+    },
     data() {
       return {
         time: '2019-01',
@@ -32,69 +35,125 @@
     },
     methods: {
       drawLine(){
-        let myChartAlert = this.$echarts.init(document.getElementById('marketChart'))
+        let myChartAlert = this.$echarts.init(document.getElementById('market'))
         myChartAlert.setOption({
-          title: {
-            text: ''
+          legend: {show: false},
+          xAxis: {
+              axisLine: {
+                  lineStyle: {
+                      color: '#FFF'
+                  }
+              },
+            data: ["1", "2","3","4","5","6","7"]
+          },
+          yAxis: {
+            axisLine: {
+                lineStyle: {
+                    color: '#FFF'
+                }
+            }
           },
           tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'cross',
-              label: {
-                backgroundColor: '#6a7985'
-              }
-            }
+              trigger: 'axis',
+              backgroundColor: '#FACB03',
+              extraCssText: 'box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);',
+              textStyle: {
+                  color: '#FFF',
+              },
           },
           grid: {
-            x: 30,
-            y: 20,
-            x2: 10,
-            y2: 20
+              top: '15%',
+              left: '1%',
+              right: '11%',
+              bottom: '2.5%',
+              containLabel: true
           },
-          xAxis: [
-            {
-              type: 'category',
-              boundaryGap: false,
-              data: ['1', '2', '3', '4', '5', '6', '7']
-            }
-          ],
-          yAxis: [
-            {
-              type: 'value'
-            }
-          ],
           series: [
             {
-              name: '1',
-              type: 'line',
-              stack: '总量',
-              color: '#5dd095',
-              areaStyle: {color: ['#EEFAF4']},
-              data: [120, 132, 101, 134, 90, 230, 210],
-              // smooth: true
+              // name: '数据',
+              type: 'bar',
+              barWidth: 10,
+              emphasis: {
+                  barBorderRadius: 0,
+                  itemStyle: {
+                    color: new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                      {
+                        offset: 0,
+                        color: "#FCD204" // 0% 处的颜色
+                      }, {
+                        offset: 1,
+                        color: "#F2A000" // 100% 处的颜色
+                      }
+                    ], false)
+                  }
+              },
+              itemStyle: {
+                normal: {
+                  barBorderRadius: 10,
+                  color: new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "#3A60DF" // 0% 处的颜色
+                    }, {
+                      offset: 1,
+                      color: "#00C5F4" // 100% 处的颜色
+                    }
+                  ], false)
+                }
+              },
+              data: [9999, 8888, 2222, 5555, 7777, 6666,9999]
             }
-          ]
+        ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
         });
       }
     }
   }
 </script>
 <style lang="stylus" scoped>
-.market_container
-  padding 12px
-  .market_hd
-    display flex
-    align-items center
-    justify-content space-between
-    p
-      flex 1
-      font-size 16px
-      color #46c183
-  .market_chart_wrap
-    #marketChart
-      width 100%
-      height 200px
+  .today_container
+    padding 32px 24px
+
+
+    .today_hd
+      display flex
+      align-items center
+      justify-content space-between
+      p
+        flex 1
+        font-size 16px
+        color #FFF
+    .today_chart_wrap
+      #market
+        width 100%
+        height 200px
 
 
 
@@ -102,7 +161,7 @@
 
 </style>
 <style >
-  .market_container .ivu-select-selection {
+  .today_container .ivu-select-selection {
     border: none;
     outline: none;
     box-shadow: none;

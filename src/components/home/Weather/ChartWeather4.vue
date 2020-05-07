@@ -12,14 +12,37 @@
     data() {
       return {
         time: '2019-01',
-        zuowu: '白菜'
+        zuowu: '白菜',
+
+        WS_airPres_arr: [],
+        WS_rainVol_arr: [],
+        dataArr: []
       }
     },
+    props: ['WS_airPres', 'WS_rainVol'],
     mounted(){
-      this.drawLine();
+
+      setTimeout(() => {
+        // console.log('=>>>> 接受数据 ',this.WS_airPres, this.WS_rainVol)
+        let dataArr = [];
+  
+        this.WS_airPres_arr = this.WS_airPres.map(item => {
+          dataArr.push(item.at);
+          return item.value
+        })
+        this.dataArr = dataArr;
+        this.WS_rainVol_arr = this.WS_rainVol.map(item => {
+          return item.value
+        })
+        // console.log(this.WS_airPres_arr)
+        // console.log(this.WS_rainVol_arr)
+        // console.log(this.dataArr)
+        this.drawLine();
+      }, 500)
     },
     methods: {
       drawLine(){
+        // const that = this;
         let myChartAlert = this.$echarts.init(document.getElementById('chart_weatherChart_4'))
         myChartAlert.setOption({
           title: {
@@ -27,12 +50,16 @@
           },
           tooltip: {
             trigger: 'axis',
-            axisPointer: {
-              type: 'cross',
-              label: {
-                backgroundColor: '#6a7985'
-              }
+            position: function (point) {
+              console.log(point)
+              return [point[0] + 20, point[1] - 50];
             }
+            // axisPointer: {
+            //   type: 'cross',
+            //   label: {
+            //     backgroundColor: '#6a7985'
+            //   }
+            // },
           },
           grid: {
             x: 6,
@@ -44,7 +71,7 @@
             {
               type: 'category',
               boundaryGap: false,
-              data: ['1', '2', '3', '4', '5', '6', '7'],
+              data: this.dataArr, // ['1', '2', '3', '4', '5', '6', '7'],
               splitLine:{
                 show:false     //去掉网格线
               },
@@ -78,13 +105,15 @@
           ],
           series: [
             {
+              name: '气压',
               type: 'line',
-              color: '#5dd095',
-              data: [120, 132, 101, 134, 90, 230, 210]
+              color: '#fead52',
+              data: this.WS_airPres_arr, // [120, 132, 101, 134, 90, 230, 210]
             },{
+              name: '雨量',
               type: 'line',
-              color: '#5dd095',
-              data: [150, 32, 11, 234, 200, 30, 250]
+              color: '#ffe002',
+              data: this.WS_rainVol_arr, // [150, 32, 11, 234, 200, 30, 250]
             }
           ]
         });

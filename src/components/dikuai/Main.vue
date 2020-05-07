@@ -3,7 +3,7 @@
  -->
 <template>
   <div class="dk_main">
-    <div class="main_hd">
+    <!-- <div class="main_hd">
       <div class="item">
         <img src="@/assets/img/dk_y_on.png" alt="">
         <p @click="show = 1">光照7206E：3300 lux</p>
@@ -24,19 +24,28 @@
         <p @click="show = 4">光照7206E：3300 lux</p>
         <EqEcharts @close="close" v-if="show == 4" class="eq_alert"></EqEcharts>
       </div>
-    </div>
+    </div> -->
 
 
 
+    <p style="text-align: center; padding-top: 16px;">园区XXXX</p>
     <div class="poster_wrap">
       <div class="poster_bg"></div>
-<!--      <img src="@/assets/img/dk_p_1.png" alt="">-->
+      <img src="@/assets/img/dk_p_1.png" alt="">
+      <div class="footer_wrap">
+        <Footer></Footer>
+      </div>
     </div>
 
 
     <div class="guolv_wrap">
+      <RightWeather style="width: 100%;" />
+      <RightWeatherInfo @changeshowWeather="changeshowWeather" />
+
+      <EchartShiduMain></EchartShiduMain>
+
 <!--      <Icon class="close" type="md-close" />-->
-      <div class="gl_weather">
+      <!-- <div class="gl_weather">
         <div class="gl_weather_title">23℃</div>
         <div class="gl_weather_info">晴 | 相对湿度：18%</div>
         <div class="gl_weather_con">
@@ -54,20 +63,19 @@
             <Button @click="showWeather = true">未来24小时天气详情</Button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!--右侧echarts-->
-      <div class="gl_eq_wrap">
+      <!-- <div class="gl_eq_wrap">
         <div class="gl_eq_item">
-          <!--空气湿度组件-->
           <EchartShiduMain></EchartShiduMain>
         </div>
-      </div>
+      </div> -->
     </div>
-
+<!-- 
     <div class="footer_wrap">
       <Footer></Footer>
-    </div>
+    </div> -->
 
     <!--天气详情-->
     <Weather v-show="showWeather" @weclose="weclose"></Weather>
@@ -80,13 +88,17 @@
   import EqEcharts from "./EqEcharts";
   import EchartShiduMain from "./EchartShiduMain";
   import Weather from "./Weather";
+  import RightWeather from './RightWeather'
+  import RightWeatherInfo from './RightWeatherInfo'
   export default {
     name: '',
     components: {
       Footer,
       EqEcharts,
       EchartShiduMain,
-      Weather
+      Weather,
+      RightWeather,
+      RightWeatherInfo
     },
     data() {
       return {
@@ -110,6 +122,9 @@
       })
     },
     methods: {
+      changeshowWeather() {
+        this.showWeather = true;
+      },
       close() {
         this.show = false;
       },
@@ -130,7 +145,7 @@
 .dk_main
   height calc(100vh - 84px)
   position relative
-  padding 0 280px 0 30px
+  padding 0 316px 0 30px
   .main_hd
     display flex
     .item
@@ -148,21 +163,25 @@
 
   .poster_wrap
     width 100%
+    box-shadow 0 0 6px rgba(0,0,0,.14)
+    border-radius 6px
+    padding 22px 22px 6px 22px
+    margin-top 16px
     img
       width 100%
       height 100%
       max-height calc(100vh - 170px)
     .poster_bg
       width 100%
-      height calc(100vh - 170px)
-      background-image url("../../assets/img/dk_p_1.png")
-      background-size contain
-      background-repeat no-repeat
+      // height calc(100vh - 170px)
+      // background-image url("../../assets/img/dk_p_1.png")
+      // background-size contain
+      // background-repeat no-repeat
   .guolv_wrap
     position fixed
     right 101px
     top 83px
-    width 250px
+    width 300px
     height calc(100vh - 83px)
     background #FFF
     box-sizing border-box
@@ -207,10 +226,10 @@
       .gl_eq_item
         padding-top 22px
 
-  .footer_wrap
-    position absolute
-    width calc(100% - 310px)
-    bottom 0
-    left 0
+  // .footer_wrap
+    // position absolute
+    // width calc(100% - 310px)
+    // bottom 0
+    // left 0
 
 </style>

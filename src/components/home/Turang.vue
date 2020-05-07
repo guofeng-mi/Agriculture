@@ -4,6 +4,12 @@
       <p>环境监测</p>
     </div>
 
+    <div class="visualMap">
+      <p><span>无需灌溉</span></p>
+      <p><span>少量灌溉</span></p>
+      <p><span>适量灌溉</span></p>
+      <p><span>急需灌溉</span></p>
+    </div>
     <div class="turang__chart">
       <div id="chart_turang"></div>
     </div>
@@ -38,7 +44,7 @@
           },
           grid: {
             x: 25,
-            y: 30,
+            y: 10,
             x2: 0,
             y2: 50
           },
@@ -76,7 +82,7 @@
                 ['03-19',82],
               ],
               itemStyle: {
-                color: '#D6891C',
+                color: '#09DEAF',
               },
               symbolSize: 4,
               type: 'scatter'
@@ -198,7 +204,7 @@
               ],
               symbolSize: 4,
               itemStyle: {
-                color: '#46891C',
+                color: '#FFD200',
               },
               type: 'scatter'
             }
@@ -221,11 +227,58 @@
       p
         flex 1
         font-size 16px
-        color #46c183
+        // color #46c183
+
+    .visualMap
+      display grid
+      grid-template-columns 1fr 1fr
+      grid-template-rows 22px
+      margin 12px auto
+      text-align center
+      p
+        &:nth-child(odd)
+          text-align right
+          padding-right 22px
+        &:nth-child(even)
+          text-align left
+          padding-left 22px
+        span
+          position relative
+          &::before
+            content ''
+            display block
+            width 10px
+            height 10px
+            border-radius 50%
+            position absolute
+            left -16px
+            top 50%
+            transform translateY(-50%)
+        &:nth-child(1) 
+          span 
+            &::before
+              background #09DEAF
+        &:nth-child(2) 
+          span 
+            &::before
+              background #FFD200
+        &:nth-child(3) 
+          span 
+            &::before
+              background #F2A100
+        &:nth-child(4) 
+          span 
+            &::before
+              background #FF1E10
+
+
+
+
+
     .turang__chart
       #chart_turang
         width 100%
-        height 300px
+        height 500px
 
 
 </style>

@@ -2,10 +2,7 @@
   <div class="zuishu_container">
     <div class="zuishu_hd_wrap">
       <p>农品追溯</p>
-      <Select v-model="test" size="small" style="width:90px">
-        <Option value="2019-01">2019-01</Option>
-        <Option value="2019-02">2019-02</Option>
-      </Select>
+      <mySelect />
     </div>
 
     <div class="zuishu_chart_wrap">
@@ -16,7 +13,11 @@
   </div>
 </template>
 <script>
+  import mySelect from '../Public/Select'
   export default {
+    components: {
+      mySelect
+    },
     data() {
       return {
         test: '2019-01'
@@ -33,13 +34,12 @@
             text: ''
           },
           tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'cross',
-              label: {
-                backgroundColor: '#6a7985'
-              }
-            }
+              trigger: 'axis',
+              backgroundColor: '#FACB03',
+              extraCssText: 'box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);',
+              textStyle: {
+                  color: '#FFF',
+              },
           },
           grid: {
             x: 30,
@@ -51,12 +51,22 @@
             {
               type: 'category',
               boundaryGap: false,
+              axisLine: {
+                  lineStyle: {
+                      color: '#FFF'
+                  }
+              },
               data: ['1', '2', '3', '4', '5', '6', '7']
             }
           ],
           yAxis: [
             {
-              type: 'value'
+              type: 'value',
+              axisLine: {
+                  lineStyle: {
+                      color: '#FFF'
+                  }
+              }
             }
           ],
           series: [
@@ -64,8 +74,8 @@
               name: '1',
               type: 'line',
               stack: '总量',
-              color: '#BDC8F7',
-              areaStyle: {color: ['#f5f8ff']},
+              color: '#EFBD09',
+              // areaStyle: {color: ['#f5f8ff']},
               data: [120, 132, 101, 134, 90, 230, 210],
               // smooth: true
             }
@@ -77,14 +87,14 @@
 </script>
 <style lang="stylus" scoped>
 .zuishu_container
-  width 100%
-  padding 12px
+  padding 30px 35px
+
   .zuishu_hd_wrap
     display flex
     align-items center
     justify-content space-between
     p
-      color #46c183
+      color #FFF
       font-size 16px
   .zuishu_chart_wrap
     #myChartAlert

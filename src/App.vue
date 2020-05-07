@@ -2,7 +2,7 @@
  * @Descripttion:
  * @version:
  * @Date: 2019-12-26 14:01:06
- * @LastEditTime : 2020-02-03 14:01:49
+ * @LastEditTime: 2020-04-28 15:03:53
  -->
 <template>
   <div id="app">
@@ -16,6 +16,9 @@
 export default {
   components: {
     // Layout
+  },
+  created() {
+    
   }
 }
 </script>

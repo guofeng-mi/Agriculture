@@ -3,10 +3,6 @@
  -->
 <template>
   <div class="sm_echarts">
-    <div class="title">
-      <p>空湿</p>
-      <p>21℃</p>
-    </div>
     <div id="myChartAlert"></div>
   </div>
 </template>
@@ -82,9 +78,23 @@
               type: 'line',
               stack: '总量',
               color: '#B0E8CB',
-              areaStyle: {color: ['#DFF6EA']},
+              // areaStyle: {color: ['#DFF6EA']},
               data: [120, 132, 101, 134, 90, 230, 210],
-              smooth: true
+              // smooth: true,
+              itemStyle: {
+                normal: {
+                  barBorderRadius: 10,
+                  color: new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
+                    {
+                      offset: 0,
+                      color: "#F7D941" // 0% 处的颜色
+                    }, {
+                      offset: 1,
+                      color: "#F3A307" // 100% 处的颜色
+                    }
+                  ], false)
+                }
+              },
             }
           ],
           grid: {
@@ -103,15 +113,15 @@
   @import '../../assets/css/global.styl'
   .sm_echarts
     position relative
-    width 200px
+    width 100%
     background #FFF
     border-radius 4px
-    .title
-      display flex
-      align-items center
-      justify-content space-between
-      padding-bottom 20px
+    margin-top 16px
+    box-shadow:  0px 2px 11px 0px rgba(0,0,0,0.14)
+    padding 20px
+    &:hover 
+      box-shadow:  0px 0px 8px 0px rgba(0,0,0,0.25);
     #myChartAlert
       width 200px
-      height 100px
+      height 200px
 </style>

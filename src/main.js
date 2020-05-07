@@ -1,17 +1,21 @@
 /*
- * @Descripttion:
- * @version:
- * @Author: Logic
- * @Date: 2019-12-26 14:01:06
- * @LastEditors  : Logic
- * @LastEditTime : 2020-01-19 10:34:15
+ * @Descripttion: 
+ * @version: 
+ * @Date: 2020-03-10 16:54:46
  */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import iView from 'iview';
-import 'iview/dist/styles/iview.css';    // 使用 CSS
+// import iView from 'iview';
+// import 'iview/dist/styles/iview.css';    // 使用 CSS
+
+import './mock'
+
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+Vue.use(ViewUI);
+
 
 // 初始化
 import './assets/iconfont/iconfont.css'
@@ -29,6 +33,8 @@ echarts.registerMap('china', china)
 Vue.prototype.$echarts = echarts;
 
 
+
+
 // 百度地图
 import BaiduMap from 'vue-baidu-map'
 import {BmlMarkerClusterer} from 'vue-baidu-map'
@@ -38,10 +44,13 @@ Vue.use(BaiduMap, {
 })
 
 
+import Tool from './assets/js/Tool';
+Vue.prototype.$Tool = Tool;
+
 
 
 Vue.config.productionTip = false
-Vue.use(iView);
+// Vue.use(iView);
 
 new Vue({
   router,

@@ -21,7 +21,7 @@
 
         // 绘制图表
         var optionMap = {
-          backgroundColor: '#FFF',
+          backgroundColor: 'transparent',
           tooltip: {
             trigger: 'item',
             formatter:'{b} <br/> ',
@@ -57,11 +57,12 @@
             {
               type: 'effectScatter',
               coordinateSystem: 'geo',
-              data: list,
-                // [
-                // {name: "公司1", value: [112.43, 36.87, 70], id: 1},
-                // {name: "公司2", value: [113.3, 40.12, 58], id: 2}
-              // ],
+              // data: list,
+              data: 
+                [
+                {name: "公司1", value: [112.43, 36.87, 70], id: 1},
+                {name: "公司2", value: [113.3, 40.12, 58], id: 2}
+              ],
               // 控制小点大小
               symbolSize: 20,
               // symbolSize: function (val) {
@@ -93,6 +94,8 @@
             }
           ]
         }
+
+        
 
         myChartChina.setOption(optionMap);
 
