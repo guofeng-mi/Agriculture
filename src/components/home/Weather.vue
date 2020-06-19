@@ -219,7 +219,7 @@
     created() {
       weatherApi.test({id: 123}).then(res => {
         let data = res.data.data.datastreams
-        // console.log(data)
+        console.log(res)
 
         /**
          * 气温，单位℃

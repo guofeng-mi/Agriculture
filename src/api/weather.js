@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export default {
   test(options) {
-    return axios.get('/api/weather', options)
+    return axios.post('/api/weather', options)
   }
 }
 
